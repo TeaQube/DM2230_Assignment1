@@ -56,10 +56,11 @@
         android:layout_marginBottom="5dp"
         android:background="#009284"
         android:backgroundTint="@color/teal_700"
-        android:padding="10dp"
         android:text="Exit"
         android:textColor="#fff"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="15dp"
+    />
 
 
 </RelativeLayout>

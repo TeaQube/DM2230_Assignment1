@@ -20,8 +20,8 @@ import com.sidm.A1.R;
 public class OptionsMenu  extends Activity implements OnClickListener, StateBase
 {
     //define buttons
-    Switch SFXSwitch, BGMSwitch;
-    Button Exit;
+    private Switch SFXSwitch, BGMSwitch;
+    private Button Exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class OptionsMenu  extends Activity implements OnClickListener, StateBase
         //define all the switches here
         SFXSwitch = (Switch) findViewById(R.id.SFXSwitch);
         BGMSwitch = (Switch) findViewById(R.id.BGMSwitch);
+
         Exit = (Button) findViewById(R.id.applyButton);
         Exit.setOnClickListener(new View.OnClickListener()
         {
@@ -58,6 +59,7 @@ public class OptionsMenu  extends Activity implements OnClickListener, StateBase
                 Toast.makeText(getApplicationContext(), "Switch1 :" + SFXSwitch + "\n" + "Switch2 :" + BGMSwitch, Toast.LENGTH_LONG).show(); // display the current state for switch's
             }
         });
+            StateManager.Instance.AddState(new Mainmenu());
     }
 
     @Override
@@ -69,7 +71,7 @@ public class OptionsMenu  extends Activity implements OnClickListener, StateBase
       if (v == Exit)
         {
             // intent --> to set to another class which another page or screen that we are launching.
-            intent.setClass(this, GamePage.class);
+            intent.setClass(this, Mainmenu.class);
  				 StateManager.Instance.ChangeState("Default"); // Default is like a loading page
         }
         startActivity(intent);
