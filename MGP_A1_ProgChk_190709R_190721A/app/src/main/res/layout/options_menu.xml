@@ -45,7 +45,7 @@
         tools:ignore="UseSwitchCompatOrMaterialXml" /><!--drawable icon to be displayed in the bottom of text-->
 
     <Button
-        android:id="@+id/applyButton"
+        android:id="@+id/exitButton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

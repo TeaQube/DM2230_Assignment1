@@ -20,7 +20,8 @@ import com.sidm.A1.R;
 public class OptionsMenu  extends Activity implements OnClickListener, StateBase
 {
     //define buttons
-    private Switch SFXSwitch, BGMSwitch;
+    private Switch SFXSwitch;
+    private Switch BGMSwitch;
     private Button Exit;
 
     @Override
@@ -39,27 +40,9 @@ public class OptionsMenu  extends Activity implements OnClickListener, StateBase
         //define all the switches here
         SFXSwitch = (Switch) findViewById(R.id.SFXSwitch);
         BGMSwitch = (Switch) findViewById(R.id.BGMSwitch);
-
-        Exit = (Button) findViewById(R.id.applyButton);
-        Exit.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                String statusSFX, statusBGM;
-                if (SFXSwitch.isChecked())
-                    statusSFX = SFXSwitch.getTextOn().toString();
-                else
-                    statusSFX = SFXSwitch.getTextOff().toString();
-                if (BGMSwitch.isChecked())
-                    statusBGM = BGMSwitch.getTextOn().toString();
-                else
-                    statusBGM = BGMSwitch.getTextOff().toString();
-
-                Toast.makeText(getApplicationContext(), "Switch1 :" + SFXSwitch + "\n" + "Switch2 :" + BGMSwitch, Toast.LENGTH_LONG).show(); // display the current state for switch's
-            }
-        });
-            StateManager.Instance.AddState(new Mainmenu());
+        Exit = (Button) findViewById(R.id.exitButton);
+        Exit.setOnClickListener(this);
+        StateManager.Instance.AddState(new Mainmenu());
     }
 
     @Override
