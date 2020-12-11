@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.sidm.A1.R;
@@ -19,7 +21,8 @@ import com.sidm.A1.R;
 public class OptionsMenu  extends AppCompatActivity implements OnClickListener, StateBase
 {
     //define buttons
-    private Button btn_back;
+    Switch SFXSwitch, BGMSwitch;
+    Button Exit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,28 @@ public class OptionsMenu  extends AppCompatActivity implements OnClickListener, 
 
         setContentView(R.layout.options_menu);
 
-        btn_back = (Button)findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(this); //Set Listener to this button --> Options Button
+        //define all the switches here
+        SFXSwitch = (Switch) findViewById(R.id.SFXSwitch);
+        BGMSwitch = (Switch) findViewById(R.id.BGMSwitch);
+        Exit = (Button) findViewById(R.id.applyButton);
+        Exit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                String statusSFX, statusBGM;
+                if (SFXSwitch.isChecked())
+                    statusSFX = SFXSwitch.getTextOn().toString();
+                else
+                    statusSFX = SFXSwitch.getTextOff().toString();
+                if (BGMSwitch.isChecked())
+                    statusBGM = BGMSwitch.getTextOn().toString();
+                else
+                    statusBGM = BGMSwitch.getTextOff().toString();
+
+                Toast.makeText(getApplicationContext(), "Switch1 :" + SFXSwitch + "\n" + "Switch2 :" + BGMSwitch, Toast.LENGTH_LONG).show(); // display the current state for switch's
+            }
+        });
     }
 
     @Override
@@ -44,10 +67,11 @@ public class OptionsMenu  extends AppCompatActivity implements OnClickListener, 
     {
         Intent intent = new Intent();
 
-        if(v == btn_back)
+      if (v == Exit)
         {
-            intent.setClass(this,Mainmenu.class);
-            StateManager.Instance.ChangeState("Default"); // Default is like a loading page
+            // intent --> to set to another class which another page or screen that we are launching.
+            intent.setClass(this, GamePage.class);
+ 				 StateManager.Instance.ChangeState("Default"); // Default is like a loading page
         }
         startActivity(intent);
     }

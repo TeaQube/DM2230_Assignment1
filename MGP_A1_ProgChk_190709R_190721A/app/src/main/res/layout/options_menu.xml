@@ -7,18 +7,59 @@
     tools:context=".Mainmenu"
     android:background = "@drawable/datacoreoptionsscreen"
     >
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="220dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="false"
+
+   <!-- code for the SFX button-->
+    <Switch
+        android:id="@+id/SFXSwitch"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="false"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="-222dp"
-        android:layout_marginRight="560dp"
-        android:layout_toStartOf="@+id/btn_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        android:checked="true"
+        android:gravity="center"
+        android:text="SFX"
+        android:textColor="#ff9933"
+        android:textStyle="bold|italic"
+        android:textOff="Off"
+        android:textOn="On"
+        android:textSize="30dp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" /><!--drawable icon to be displayed in the bottom of text-->
+
+    <!-- code for the BGM button-->
+    <Switch
+        android:id="@+id/BGMSwitch"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:checked="true"
+        android:gravity="center"
+        android:text="BGM"
+        android:textColor="#ff9933"
+        android:textOff="Off"
+        android:textOn="On"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        tools:ignore="UseSwitchCompatOrMaterialXml" /><!--drawable icon to be displayed in the bottom of text-->
+
+    <Button
+        android:id="@+id/applyButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="5dp"
+        android:background="#009284"
         android:backgroundTint="@color/teal_700"
-        android:text="Options" />
+        android:padding="10dp"
+        android:text="Exit"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>

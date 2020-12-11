@@ -15,9 +15,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="false"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="-222dp"
-        android:layout_marginRight="560dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="-220dp"
+        android:layout_marginRight="390dp"
         android:layout_toStartOf="@+id/btn_start"
         android:backgroundTint="@color/teal_700"
         android:text="Options" />
@@ -29,9 +29,9 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="false"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="220dp"
         android:layout_marginEnd="-220dp"
-        android:layout_marginRight="560dp"
+        android:layout_marginRight="390dp"
         android:layout_toStartOf="@+id/btn_start"
         android:backgroundTint="@color/teal_700"
         android:text="Quit" />
@@ -43,11 +43,10 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="149dp"
-        android:layout_marginRight="395dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="390dp"
         android:backgroundTint="@color/teal_700"
-        android:text="Start"
-        app:iconTint="#CD1313" />
+        android:text="Start" />
 
 
 </RelativeLayout>
