@@ -37,10 +37,10 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
         btn_start.setOnClickListener(this); //Set Listener to this button --> Start Button
 
         btn_options = (Button)findViewById(R.id.btn_options);
-        btn_options.setOnClickListener(this); //Set Listener to this button --> Back Button
+        btn_options.setOnClickListener(this); //Set Listener to this button --> Options Button
 
         btn_quit = (Button)findViewById(R.id.btn_quit);
-        btn_quit.setOnClickListener(this); //Set Listener to this button --> Back Button
+        btn_quit.setOnClickListener(this); //Set Listener to this button --> Quit Button
 
 		  StateManager.Instance.AddState(new Mainmenu());
     }
