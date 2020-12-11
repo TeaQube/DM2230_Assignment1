@@ -1,6 +1,7 @@
 package com.sidm.A1;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 import android.view.View;
@@ -43,6 +44,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
         btn_quit.setOnClickListener(this); //Set Listener to this button --> Quit Button
 
 		  StateManager.Instance.AddState(new Mainmenu());
+		  StateManager.Instance.AddState(new OptionsMenu());
     }
 
     @Override
@@ -62,12 +64,13 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
  				 StateManager.Instance.ChangeState("Default"); // Default is like a loading page
         }
 
-        else if (v == btn_options)
+       if (v == btn_options)
         {
             intent.setClass(this, OptionsMenu.class);
+            StateManager.Instance.ChangeState("Default"); // Default is like a loading page
         }
 
-        else if (v == btn_quit)
+       if (v == btn_quit)
         {
             //quit the game
             onDestroy();

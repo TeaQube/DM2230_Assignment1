@@ -9,7 +9,7 @@
     >
 
     <Button
-        android:id="@+id/btn_options"
+        android:id="@+id/btn_quit"
         android:layout_width="220dp"
         android:layout_height="70dp"
         android:layout_alignParentLeft="false"
@@ -20,10 +20,10 @@
         android:layout_marginRight="390dp"
         android:layout_toStartOf="@+id/btn_start"
         android:backgroundTint="@color/teal_700"
-        android:text="Options" />
+        android:text="Quit" />
 
     <Button
-        android:id="@+id/btn_quit"
+        android:id="@+id/btn_options"
         android:layout_width="220dp"
         android:layout_height="70dp"
         android:layout_alignParentLeft="false"
@@ -34,7 +34,7 @@
         android:layout_marginRight="390dp"
         android:layout_toStartOf="@+id/btn_start"
         android:backgroundTint="@color/teal_700"
-        android:text="Quit" />
+        android:text="Options" />
 
     <Button
         android:id="@+id/btn_start"

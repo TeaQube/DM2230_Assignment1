@@ -1,24 +1,23 @@
 package com.sidm.A1;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.Button;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.content.Intent;
+
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.sidm.A1.R;
 
-public class OptionsMenu  extends AppCompatActivity implements OnClickListener, StateBase
+public class OptionsMenu  extends Activity implements OnClickListener, StateBase
 {
     //define buttons
     Switch SFXSwitch, BGMSwitch;
