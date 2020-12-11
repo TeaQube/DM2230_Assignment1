@@ -17,7 +17,8 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
 
     //Define buttons
     private Button btn_start;
-    private Button btn_help;
+    private Button btn_options;
+    private Button btn_quit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,11 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
         btn_start = (Button)findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this); //Set Listener to this button --> Start Button
 
-        btn_help = (Button)findViewById(R.id.btn_help);
-        btn_help.setOnClickListener(this); //Set Listener to this button --> Back Button
+        btn_options = (Button)findViewById(R.id.btn_options);
+        btn_options.setOnClickListener(this); //Set Listener to this button --> Back Button
+
+        btn_quit = (Button)findViewById(R.id.btn_quit);
+        btn_quit.setOnClickListener(this); //Set Listener to this button --> Back Button
 
 		  StateManager.Instance.AddState(new Mainmenu());
     }
@@ -58,11 +62,19 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
  				 StateManager.Instance.ChangeState("Default"); // Default is like a loading page
         }
 
-        else if (v == btn_help)
+        else if (v == btn_options)
         {
             intent.setClass(this, HelpPage.class);
         }
+
+        else if (v == btn_quit)
+        {
+            //quit the game
+            onDestroy();
+        }
+
         startActivity(intent);
+
     }
 
     @Override

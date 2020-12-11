@@ -27,7 +27,8 @@ public class Splashpage extends Activity
             public void run() {
                 try {
                     int waited = 0;
-                    while(_active && (waited < _splashTime)) {
+                    while(_active && (waited < _splashTime))
+                    {
                         sleep(200);
                         if(_active) {
                             waited += 200;
