@@ -29,6 +29,7 @@ public class GameSystem {
         //StateManager.Instance.AddState(new HelpPage());
     }
 
+    //stuff for pausing the game vv
     public void SetIsPaused(boolean _newIsPaused)
     {
         isPaused = _newIsPaused;

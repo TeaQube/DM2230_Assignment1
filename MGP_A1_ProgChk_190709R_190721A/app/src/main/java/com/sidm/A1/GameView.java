@@ -36,6 +36,7 @@ public class GameView extends SurfaceView {
                 @Override
                 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                     // Nothing to type here cos it will be handle by the thread
+                    //can be used to modify the size of the view
                 }
 
                 @Override
