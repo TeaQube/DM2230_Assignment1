@@ -8,45 +8,31 @@
     android:background = "@drawable/datacoregamescreen"
     >
 
-    <Button
-        android:id="@+id/btn_quit"
-        android:layout_width="220dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="false"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="-220dp"
-        android:layout_marginRight="390dp"
-        android:layout_toStartOf="@+id/btn_start"
-        android:backgroundTint="@color/teal_700"
-        android:text="Quit" />
-
-    <Button
-        android:id="@+id/btn_options"
-        android:layout_width="220dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="false"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="-220dp"
-        android:layout_marginRight="390dp"
-        android:layout_toStartOf="@+id/btn_start"
-        android:backgroundTint="@color/teal_700"
-        android:text="Options" />
-
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="220dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="false"
+    <!-- for play button -->
+    <ImageButton
+        android:id="@+id/btn_play"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="140dp"
-        android:layout_marginRight="390dp"
+        android:layout_marginEnd="470dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="448dp"
         android:backgroundTint="@color/teal_700"
-        android:text="Start" />
+        android:src="@drawable/playbutton" />
 
+    <!-- for options button -->
+    <ImageButton
+        android:id="@+id/btn_options"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="442dp"
+        android:layout_toStartOf="@+id/btn_play"
+        android:backgroundTint="@color/teal_700"
+        android:src="@drawable/settingsbutton" />
 
 </RelativeLayout>
