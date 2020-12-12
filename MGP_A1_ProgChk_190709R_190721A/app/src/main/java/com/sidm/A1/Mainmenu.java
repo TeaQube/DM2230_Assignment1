@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
