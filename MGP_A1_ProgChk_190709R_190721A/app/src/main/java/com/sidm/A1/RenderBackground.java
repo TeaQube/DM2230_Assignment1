@@ -29,7 +29,6 @@ public class RenderBackground implements EntityBase {
     @Override
     public void Init(SurfaceView _view) {
 
-
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;

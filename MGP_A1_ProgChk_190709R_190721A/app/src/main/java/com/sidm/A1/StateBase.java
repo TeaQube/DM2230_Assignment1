@@ -8,7 +8,6 @@ import android.view.SurfaceView;
 
 public interface StateBase {
     String GetName();
-
     void OnEnter(SurfaceView _view);
     void OnExit();
     void Render(Canvas _canvas);
