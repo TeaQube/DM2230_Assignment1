@@ -21,11 +21,12 @@ public class GameSystem {
 
     public void Init(SurfaceView _view)
     {
-
         // We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
+        StateManager.Instance.AddState(new GamePage());
+        StateManager.Instance.AddState(new OptionsMenu());
         StateManager.Instance.AddState(new MainGameSceneState());
-        StateManager.Instance.AddState(new InstructionSceneState());
+        //StateManager.Instance.AddState(new InstructionSceneState());
         //StateManager.Instance.AddState(new HelpPage());
     }
 

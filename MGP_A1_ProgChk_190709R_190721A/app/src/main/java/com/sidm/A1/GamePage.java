@@ -13,15 +13,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.view.View.OnClickListener;
 
-public class GamePage extends Activity implements OnClickListener, StateBase {
+public class GamePage extends Activity implements StateBase {
 
     public static GamePage Instance = null;
-
-    //defining buttons
-    private ImageButton moveLeft;
-    private ImageButton moveRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,34 +30,7 @@ public class GamePage extends Activity implements OnClickListener, StateBase {
         Instance = this;
 
         setContentView(new GameView(this)); // Surfaceview = GameView
-
-        moveLeft=(ImageButton)findViewById(R.id.moveLeft);
-        moveLeft.setOnClickListener(this);
-
-        moveRight=(ImageButton)findViewById(R.id.moveRight);
-        moveRight.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
-        // Intent = action to be performed.
-        // Intent is an object provides runtime binding.
-        // new instance of this object intent
-
-        Intent intent = new Intent();
-
-        if(v==moveLeft)
-        {
-            intent.setClass(this, GamePage.class);
-
-        }
-        if(v==moveRight)
-        {
-            intent.setClass(this, GamePage.class);
-
-        }
-        startActivity(intent);
+        //shows what you see on the screen
     }
 
     @Override
@@ -80,6 +48,7 @@ public class GamePage extends Activity implements OnClickListener, StateBase {
 
     @Override
     public String GetName() {
+
         return "GamePage";
     }
 

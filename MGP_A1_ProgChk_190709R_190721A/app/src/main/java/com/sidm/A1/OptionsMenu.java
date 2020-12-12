@@ -42,7 +42,6 @@ public class OptionsMenu  extends Activity implements OnClickListener, StateBase
         BGMSwitch = (Switch) findViewById(R.id.BGMSwitch);
         Exit = (Button) findViewById(R.id.exitButton);
         Exit.setOnClickListener(this);
-        StateManager.Instance.AddState(new Mainmenu());
     }
 
     @Override
@@ -62,7 +61,7 @@ public class OptionsMenu  extends Activity implements OnClickListener, StateBase
 
     @Override
     public String GetName() {
-        return null;
+        return "OptionsMenu";
     }
 
     @Override
