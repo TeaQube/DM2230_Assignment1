@@ -19,11 +19,29 @@ public class EntitySwitch implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
 
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
+
+        imgRadius = (float) (spritesheet.GetHeight() * 0.5);
+        isInit = true;
     }
 
     @Override
     public void Update(float _dt) {
 
+
+        if (TouchManager.Instance.HasTouch()) {
+            // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
+
+            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched) {
+                // Collided!
+
+                hasTouched = true;
+
+                xPos = TouchManager.Instance.GetPosX();
+                yPos = TouchManager.Instance.GetPosY();
+            }
+
+        }
     }
 
     @Override

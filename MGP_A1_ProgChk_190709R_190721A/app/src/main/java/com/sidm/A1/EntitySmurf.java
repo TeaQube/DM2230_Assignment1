@@ -42,6 +42,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Update(float _dt) {
 
+        spritesheet.Update(_dt);
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 
@@ -54,6 +55,15 @@ public class EntitySmurf implements EntityBase, Collidable {
                 yPos = TouchManager.Instance.GetPosY();
             }
 
+        }
+    }
+
+    @Override
+    public void OnHit(Collidable _other)//???
+    {
+        if (_other.GetType() == "NextEntity") //Another Entity
+        {
+            SetIsDone(true);
         }
     }
 
@@ -116,11 +126,5 @@ public class EntitySmurf implements EntityBase, Collidable {
         return imgRadius;
     }
 
-    @Override
-    public void OnHit(Collidable _other) {
-        if (_other.GetType() == "NextEntity") //Another Entity
-        {
-            SetIsDone(true);
-        }
-    }
+
 }
