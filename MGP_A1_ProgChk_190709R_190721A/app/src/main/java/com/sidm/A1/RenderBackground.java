@@ -17,6 +17,8 @@ public class RenderBackground implements EntityBase {
     int screenWidth, screenHeight;
 
     public static void Create() {
+        RenderBackground result = new RenderBackground();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BACKGROUND);
     }
 
     @Override
