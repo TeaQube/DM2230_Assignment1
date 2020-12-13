@@ -3,6 +3,7 @@ package com.sidm.A1;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
@@ -28,14 +29,14 @@ public class EntitySmurf implements EntityBase, Collidable {
 
     @Override
     public void Init(SurfaceView _view) {
-        //Define which image / png u want to use for this entity
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.smurfsprite);
         //vv this should be correct
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
         // Initialize inital positions
+        xPos = 60;
+        yPos = 20;
         // Any others.
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
-        isDone = true;
+        isInit = true;
     }
 
     @Override
@@ -58,8 +59,6 @@ public class EntitySmurf implements EntityBase, Collidable {
 
     @Override
     public void Render(Canvas _canvas) {
-        // Our basic rendering with image centered
-        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f, null);
 
         spritesheet.Render(_canvas,(int)xPos,(int)yPos);
         //basically RenderMesh() from compg.

@@ -21,8 +21,6 @@ public class MainGameSceneState implements StateBase {
     {
         RenderBackground.Create();
         EntitySmurf.Create();
-        //IMPT NOTE: somehow EntitySmurf's init is acting up
-
         //use .Create() to create things you want
         // Example to include another Renderview for Pause Button
     }
@@ -30,7 +28,6 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnExit() {
         EntityManager.Instance.Clean();
-        //GamePage.Instance.finish();
         //clean things up
     }
 
