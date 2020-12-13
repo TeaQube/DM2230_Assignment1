@@ -30,7 +30,7 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnExit() {
         EntityManager.Instance.Clean();
-        GamePage.Instance.finish();
+        //GamePage.Instance.finish();
         //clean things up
     }
 
@@ -38,6 +38,7 @@ public class MainGameSceneState implements StateBase {
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
+        
         //use entity manager to render things
     }
 
