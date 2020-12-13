@@ -7,12 +7,14 @@ import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
     private Bitmap bmp = null; // Define image object name (bmp)
+    private Sprite spritesheet = null; //used for the spritesheet.
     // To load a png image file
     // Define  x and y pos and also direction
     //vector 2 class from ACG, PPHYs, go ahead!!
-    private int renderLayer;
+    private int renderLayer =0;
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
-    private boolean hasTouched = false, isDone,isInit; // Check for ontouch events
+    private boolean hasTouched = false, isInit; // Check for ontouch events
+    private boolean isDone = false;
 
     @Override
     public boolean IsDone() {
@@ -27,9 +29,12 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //Define which image / png u want to use for this entity
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.mipmap.ic_launcher);
+        //bmp = BitmapFactory.decodeResource(_view.getResources(), R.mipmap.ic_launcher);
+        //vv this should be correct
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurf_sprite),0,0,60);
         // Initialize inital positions
         // Any others.
+        imgRadius = (float) (spritesheet.GetHeight() * 0.5);
     }
 
     @Override
@@ -37,6 +42,7 @@ public class EntitySmurf implements EntityBase, Collidable {
 
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
+
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched) {
                 // Collided!
 
@@ -53,6 +59,8 @@ public class EntitySmurf implements EntityBase, Collidable {
     public void Render(Canvas _canvas) {
         // Our basic rendering with image centered
         _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f, null);
+
+        spritesheet.Render(_canvas,(int)xPos,(int)yPos);
         //basically RenderMesh() from compg.
     }
 

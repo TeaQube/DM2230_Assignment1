@@ -16,6 +16,7 @@ public interface EntityBase
         //ENT_PAUSE,
         //ENT_TEXT,
         //ENT_NEXT,
+        ENT_BACKGROUND,
         ENT_DEFAULT,
     }
 

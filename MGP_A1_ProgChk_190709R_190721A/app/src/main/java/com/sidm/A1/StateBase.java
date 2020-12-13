@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceView;
 
 public interface StateBase {
-    String GetName();
+    String GetName();//defines the name for your state
     void OnEnter(SurfaceView _view);
     void OnExit();
     void Render(Canvas _canvas);

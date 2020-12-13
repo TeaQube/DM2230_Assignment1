@@ -20,6 +20,7 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
+        //use .Create() to create things you want
         // Example to include another Renderview for Pause Button
     }
 
@@ -27,13 +28,14 @@ public class MainGameSceneState implements StateBase {
     public void OnExit() {
         EntityManager.Instance.Clean();
         GamePage.Instance.finish();
+        //clean things up
     }
 
     @Override
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-        
+        //use entity manager to render things
     }
 
     @Override
@@ -41,6 +43,7 @@ public class MainGameSceneState implements StateBase {
 
         EntityManager.Instance.Update(_dt);
 
+        //vv deals with transitions
         if (TouchManager.Instance.IsDown()) {
 
             //Example of touch on screen in the main game to trigger back to Main menu

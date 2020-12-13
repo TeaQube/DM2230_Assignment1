@@ -74,6 +74,6 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public ENTITY_TYPE GetEntityType() {
-        return null;
+        return ENTITY_TYPE.ENT_BACKGROUND;
     }
 }
