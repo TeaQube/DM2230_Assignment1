@@ -29,12 +29,13 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //Define which image / png u want to use for this entity
-        //bmp = BitmapFactory.decodeResource(_view.getResources(), R.mipmap.ic_launcher);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.smurfsprite);
         //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurf_sprite),0,0,60);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
         // Initialize inital positions
         // Any others.
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
+        isDone = true;
     }
 
     @Override

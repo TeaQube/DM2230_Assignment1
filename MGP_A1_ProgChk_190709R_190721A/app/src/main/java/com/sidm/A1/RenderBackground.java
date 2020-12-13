@@ -17,6 +17,9 @@ public class RenderBackground implements EntityBase {
     int screenWidth, screenHeight;
 
     public static void Create() {
+        RenderBackground result = new RenderBackground();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_DEFAULT);
+        //return result;
     }
 
     @Override
@@ -52,6 +55,7 @@ public class RenderBackground implements EntityBase {
     @Override
     public void Render(Canvas _canvas) {
         _canvas.drawBitmap(bmp,xPos, yPos, null);  // 1st image loaded which starts at 0,0
+
         _canvas.drawBitmap(bmp, xPos + screenWidth, yPos, null);  //xpos + screenwidth = 1028 ,.. 1028 end
         //yPos = 0
 
