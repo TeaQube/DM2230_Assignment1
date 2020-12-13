@@ -33,7 +33,7 @@ public class MainGameSceneState implements StateBase {
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-
+        
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MainGameSceneState implements StateBase {
         EntityManager.Instance.Update(_dt);
 
         if (TouchManager.Instance.IsDown()) {
-			
+
             //Example of touch on screen in the main game to trigger back to Main menu
             StateManager.Instance.ChangeState("Mainmenu");
         }

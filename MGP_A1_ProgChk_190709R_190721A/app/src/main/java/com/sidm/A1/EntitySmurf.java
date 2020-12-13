@@ -53,7 +53,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     public void Render(Canvas _canvas) {
         // Our basic rendering with image centered
         _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f, null);
-        //basically RenderMesh() from compg. 
+        //basically RenderMesh() from compg.
     }
 
     @Override
