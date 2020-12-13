@@ -20,7 +20,7 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
-        //EntitySmurf.Create();
+        EntitySmurf.Create();
         //IMPT NOTE: somehow EntitySmurf's init is acting up
 
         //use .Create() to create things you want
