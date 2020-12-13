@@ -17,7 +17,7 @@ public interface EntityBase
          ENT_LEFT,
          ENT_RIGHT,
         ENT_BACKGROUND,
-
+        ENT_SWITCH,
         ENT_DEFAULT,
     }
 
