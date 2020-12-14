@@ -6,6 +6,7 @@ import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
     private Bitmap bmp = null; // Define image object name (bmp)
+    private Bitmap scaledbmp = null;
     private Sprite spritesheet = null; //used for the spritesheet.
     // To load a png image file
     // Define  x and y pos and also direction
@@ -14,6 +15,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
+    int score = 0;
     private boolean[] buttonpress = new boolean[BUTTONPRESSTYPE.NUM_BUTTONS.ordinal()];
 
     enum BUTTONPRESSTYPE
@@ -48,10 +50,10 @@ public class EntitySmurf implements EntityBase, Collidable {
         //vv this should be correct
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
         // Initialize inital positions
-        xPos = 100;
-        yPos = 50;
+        xPos = 20;
+        yPos = 550;
         // Any others.
-        imgRadius = (float) (spritesheet.GetHeight() * 0.5);
+        imgRadius = (float) (spritesheet.GetHeight() * 0.33);
         isInit = true;
     }
 
@@ -114,6 +116,15 @@ public class EntitySmurf implements EntityBase, Collidable {
     {
         if (_other.GetType() == "NextEntity") //Another Entity
         {
+            SetIsDone(true);
+        }
+        if(_other.GetType()=="EntitySwitch")
+        {
+            //_other.SetIsDone(true);
+        }
+        if(_other.GetType()=="EntityCollectible")
+        {
+            score += 1;
         }
     }
 
@@ -158,7 +169,7 @@ public class EntitySmurf implements EntityBase, Collidable {
 
     @Override
     public String GetType() {
-        return "SampleEntity";
+        return "SmurfEntity";
     }
 
     @Override
