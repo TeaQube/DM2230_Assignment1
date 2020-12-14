@@ -15,19 +15,19 @@ public class EntitySwitch implements EntityBase, Collidable {
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
+    private Sprite switchon = null;
+    private Sprite switchoff = null;
 
     @Override
     public void Init(SurfaceView _view) {
 
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
-
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.switchsprite),1,2,60);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
 
     @Override
     public void Update(float _dt) {
-
 
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
@@ -36,7 +36,6 @@ public class EntitySwitch implements EntityBase, Collidable {
                 // Collided!
 
                 hasTouched = true;
-
                 xPos = TouchManager.Instance.GetPosX();
                 yPos = TouchManager.Instance.GetPosY();
             }
