@@ -22,6 +22,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
     //Define buttons
     private ImageButton btn_play;
     private ImageButton btn_options;
+    MediaPlayer BGM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,9 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
 
         btn_options = (ImageButton)findViewById(R.id.btn_options);
         btn_options.setOnClickListener(this); //Set Listener to this button --> Options Button
+
+        BGM = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
+        BGM.start();
 
     }
 
@@ -82,7 +86,6 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
     @Override
     public void OnExit()
     {
-
     }
 	
     @Override
@@ -102,6 +105,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
     @Override
     protected void onStop() {
         super.onStop();
+        BGM.release();
     }
 
     @Override
