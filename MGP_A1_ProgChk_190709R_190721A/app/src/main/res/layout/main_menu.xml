@@ -19,7 +19,7 @@
         android:layout_marginTop="160dp"
         android:layout_marginRight="448dp"
         android:backgroundTint="@color/teal_700"
-        android:src="@drawable/playbutton" />
+        android:src="@drawable/playbutton"/>
 
     <!-- for options button -->
     <ImageButton
@@ -33,6 +33,6 @@
         android:layout_marginRight="442dp"
         android:layout_toStartOf="@+id/btn_play"
         android:backgroundTint="@color/teal_700"
-        android:src="@drawable/settingsbutton" />
+        android:src="@drawable/settingsbutton"/>
 
 </RelativeLayout>

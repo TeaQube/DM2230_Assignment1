@@ -4,12 +4,17 @@ package com.sidm.A1;
 // Create a GamePage is an activity class used to hold the GameView which will have a surfaceview
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
-public class GamePage extends Activity {
+public class GamePage extends Activity implements StateBase {
 
     public static GamePage Instance = null;
 
@@ -19,11 +24,13 @@ public class GamePage extends Activity {
 
         //To make fullscreen
         requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide titlebar
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  // Hide topbar
 
         Instance = this;
 
         setContentView(new GameView(this)); // Surfaceview = GameView
+        //shows what you see on the screen
     }
 
     @Override
@@ -38,5 +45,32 @@ public class GamePage extends Activity {
         return true;
     }
 
+
+    @Override
+    public String GetName() {
+
+        return "GamePage";
+    }
+
+    @Override
+    public void OnEnter(SurfaceView _view) {
+
+    }
+
+    @Override
+    public void OnExit() {
+
+    }
+
+    @Override
+    public void Render(Canvas _canvas)
+    {
+
+    }
+
+    @Override
+    public void Update(float _dt) {
+
+    }
 }
 

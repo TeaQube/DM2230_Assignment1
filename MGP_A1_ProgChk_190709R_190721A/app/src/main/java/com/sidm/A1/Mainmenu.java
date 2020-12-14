@@ -42,8 +42,6 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
         btn_options = (ImageButton)findViewById(R.id.btn_options);
         btn_options.setOnClickListener(this); //Set Listener to this button --> Options Button
 
-		  StateManager.Instance.AddState(new Mainmenu());
-		  StateManager.Instance.AddState(new OptionsMenu());
     }
 
     @Override
@@ -60,13 +58,13 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
         {
             // intent --> to set to another class which another page or screen that we are launching.
             intent.setClass(this, GamePage.class);
- 				 StateManager.Instance.ChangeState("Default"); // Default is like a loading page
+            StateManager.Instance.ChangeState("MainGame");
         }
 
          if (v == btn_options)
         {
             intent.setClass(this, OptionsMenu.class);
-            StateManager.Instance.ChangeState("Default"); // Default is like a loading page
+            StateManager.Instance.ChangeState("OptionsMenu"); // Default is like a loading page
         }
 
         startActivity(intent);
@@ -82,7 +80,9 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
     }
 	
     @Override
-    public void OnExit() {
+    public void OnExit()
+    {
+
     }
 	
     @Override

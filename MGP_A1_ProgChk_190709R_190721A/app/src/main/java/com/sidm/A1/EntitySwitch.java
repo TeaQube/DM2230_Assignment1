@@ -6,35 +6,22 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
-public class EntitySmurf implements EntityBase, Collidable {
+public class EntitySwitch implements EntityBase, Collidable {
+
+   boolean hasInteracted;
     private Bitmap bmp = null; // Define image object name (bmp)
     private Sprite spritesheet = null; //used for the spritesheet.
-    // To load a png image file
-    // Define  x and y pos and also direction
-    //vector 2 class from ACG, PPHYs, go ahead!!
     private int renderLayer =0;
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
-
-    @Override
-    public boolean IsDone() {
-        return isDone;
-    }
-
-    @Override
-    public void SetIsDone(boolean _isDone) {
-        isDone = _isDone;
-    }
+    private Sprite switchon = null;
+    private Sprite switchoff = null;
 
     @Override
     public void Init(SurfaceView _view) {
-        //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
-        // Initialize inital positions
-        xPos = 60;
-        yPos = 20;
-        // Any others.
+
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.switchsprite),1,2,60);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
@@ -42,7 +29,6 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Update(float _dt) {
 
-        spritesheet.Update(_dt);
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 
@@ -58,19 +44,37 @@ public class EntitySmurf implements EntityBase, Collidable {
     }
 
     @Override
-    public void OnHit(Collidable _other)//???
-    {
-        if (_other.GetType() == "NextEntity") //Another Entity
-        {
-            SetIsDone(true);
-        }
+    public void Render(Canvas _canvas) {
+
     }
 
     @Override
-    public void Render(Canvas _canvas) {
+    public void OnHit(Collidable _other) {
 
-        spritesheet.Render(_canvas,(int)xPos,(int)yPos);
-        //basically RenderMesh() from compg.
+    }
+
+    public static EntitySwitch Create()
+    {
+        EntitySwitch result = new EntitySwitch();
+        EntityManager.Instance.AddEntity(result,ENTITY_TYPE.ENT_SWITCH);
+        return result;
+    }
+
+    public static EntitySwitch Create(int _layer)
+    {
+        EntitySwitch result = Create();
+        result.SetRenderLayer(_layer);
+        return result;
+    }
+
+    @Override
+    public boolean IsDone() {
+        return isDone;
+    }
+
+    @Override
+    public void SetIsDone(boolean _isDone) {
+        isDone = _isDone;
     }
 
     @Override
@@ -88,26 +92,14 @@ public class EntitySmurf implements EntityBase, Collidable {
         renderLayer = _newLayer;
     }
 
-    public static EntitySmurf Create() {
-        EntitySmurf result = new EntitySmurf();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_SMURF);
-        return result;
-    }
-
-    public static EntitySmurf Create(int _layer) {
-        EntitySmurf result = Create();
-        result.SetRenderLayer(_layer);
-        return result;
-    }
-
     @Override
     public ENTITY_TYPE GetEntityType() {
-        return ENTITY_TYPE.ENT_SMURF;
+        return ENTITY_TYPE.ENT_SWITCH;
     }
 
     @Override
     public String GetType() {
-        return "SampleEntity";
+        return "EntitySwitch";
     }
 
     @Override
@@ -124,6 +116,4 @@ public class EntitySmurf implements EntityBase, Collidable {
     public float GetRadius() {
         return imgRadius;
     }
-
-
 }

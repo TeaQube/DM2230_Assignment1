@@ -25,6 +25,7 @@ public class UpdateThread extends Thread {
         StateManager.Instance.Init(_view);
         EntityManager.Instance.Init(_view);
         GameSystem.Instance.Init(_view);
+        ResourceManager.Instance.Init(_view);
     }
 
     public boolean IsRunning()
@@ -53,7 +54,6 @@ public class UpdateThread extends Thread {
         long prevTime = System.nanoTime();
 
         StateManager.Instance.Start("MainGame");  // To edit to whichever state to start with.
-        //^ change to default
 
         // This is the game loop
         while (isRunning && StateManager.Instance.GetCurrentState() != "INVALID")

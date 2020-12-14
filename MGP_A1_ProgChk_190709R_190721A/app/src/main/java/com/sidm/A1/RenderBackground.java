@@ -10,28 +10,38 @@ import android.view.SurfaceView;
 public class RenderBackground implements EntityBase {
     private Bitmap bmp = null;
     private boolean isDone = false;
-    private float xPos, yPos, xPos2, yPos2 = 0.0f;
+    private float xPos = 0.0f;
+    private float yPos = 0.0f;
+    private float xPos2 = 0.0f;
+    private float yPos2 = 0.0f;
     int screenWidth, screenHeight;
 
     public static void Create() {
+        RenderBackground result = new RenderBackground();
+
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BACKGROUND);
+
     }
 
     @Override
     public boolean IsDone() {
-        return false;
+        return isDone;
     }
 
     @Override
     public void SetIsDone(boolean _isDone) {
-
+        isDone = _isDone;
     }
 
     @Override
     public void Init(SurfaceView _view) {
+        bmp = BitmapFactory.decodeResource(_view.getResources(),R.drawable.gamescene);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
+
+        //can create a scaled bitmap if it's too big
     }
 
     @Override
@@ -45,6 +55,10 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public void Render(Canvas _canvas) {
+        _canvas.drawBitmap(bmp,xPos, yPos, null);  // 1st image loaded which starts at 0,0
+
+        _canvas.drawBitmap(bmp, xPos + screenWidth, yPos, null);  //xpos + screenwidth = 1028 ,.. 1028 end
+        //yPos = 0
 
     }
 
@@ -65,6 +79,6 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public ENTITY_TYPE GetEntityType() {
-        return null;
+        return ENTITY_TYPE.ENT_BACKGROUND;
     }
 }
