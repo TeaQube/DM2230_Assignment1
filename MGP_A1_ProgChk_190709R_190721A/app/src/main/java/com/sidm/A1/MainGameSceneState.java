@@ -17,6 +17,7 @@ public class MainGameSceneState implements StateBase {
     EntityUp upbutton;
     EntityDown downbutton;
 
+
     @Override
     public String GetName() {
         return "MainGame";
@@ -26,6 +27,8 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
+        EntityCollectible.Create();
+        EntitySwitch.Create();
         player = EntitySmurf.Create();
         leftbutton = EntityLeft.Create();
         rightbutton = EntityRight.Create();
