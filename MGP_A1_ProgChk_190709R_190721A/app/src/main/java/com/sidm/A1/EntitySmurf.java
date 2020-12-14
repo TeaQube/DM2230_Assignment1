@@ -30,7 +30,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.playersprite),3,3,60);
         // Initialize inital positions
         xPos = 60;
         yPos = 20;
