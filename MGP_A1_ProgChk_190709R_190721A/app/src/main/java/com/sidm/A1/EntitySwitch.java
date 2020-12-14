@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 
 public class EntitySwitch implements EntityBase, Collidable {
 
-   boolean hasInteracted;
+    boolean hasInteracted;
     private Bitmap bmp = null; // Define image object name (bmp)
     private Sprite spritesheet = null; //used for the spritesheet.
     private int renderLayer =0;
@@ -21,14 +21,18 @@ public class EntitySwitch implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
 
+        xPos = 100;
+        yPos = 100;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.switchsprite),1,2,60);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
+
     }
 
     @Override
     public void Update(float _dt) {
 
+        spritesheet.Update(_dt);
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 
@@ -45,12 +49,15 @@ public class EntitySwitch implements EntityBase, Collidable {
 
     @Override
     public void Render(Canvas _canvas) {
-
+        spritesheet.Render(_canvas,(int)xPos,(int)yPos);
     }
 
     @Override
     public void OnHit(Collidable _other) {
-
+        if(_other.GetType()=="SmurfEntity")
+        {
+            SetIsDone(true);
+        }
     }
 
     public static EntitySwitch Create()

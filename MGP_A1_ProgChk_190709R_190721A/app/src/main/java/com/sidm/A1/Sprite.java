@@ -88,4 +88,11 @@ public class Sprite
     {
         return width;
     }
+
+    public void Scale(int widthpx, int heightpx)
+    {
+        bmp = Bitmap.createScaledBitmap(bmp , widthpx,heightpx,false);
+        width = bmp.getWidth() / col;
+        height = bmp.getHeight() / row;
+    }
 }

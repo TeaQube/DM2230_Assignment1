@@ -35,7 +35,7 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public void Init(SurfaceView _view) {
-        bmp = BitmapFactory.decodeResource(_view.getResources(),R.drawable.spacebackground);
+        bmp = BitmapFactory.decodeResource(_view.getResources(),R.drawable.gamescene);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
@@ -46,7 +46,7 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public void Update(float _dt) {
-        xPos -= _dt * 500;  // How fast it scrolls moving from right to left.
+        xPos -= _dt * 5;  // How fast it scrolls moving from right to left.
 
         if (xPos < - screenWidth){  // xpos
             xPos = 0;

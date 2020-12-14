@@ -6,47 +6,37 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
-public class EntitySmurf implements EntityBase, Collidable {
+public class EntityCollectible implements EntityBase, Collidable {
+
     private Bitmap bmp = null; // Define image object name (bmp)
-    private Bitmap scaledbmp = null;
     private Sprite spritesheet = null; //used for the spritesheet.
-    // To load a png image file
-    // Define  x and y pos and also direction
-    //vector 2 class from ACG, PPHYs, go ahead!!
     private int renderLayer =0;
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
-    int score=0;
 
     @Override
-    public boolean IsDone() {
-        return isDone;
-    }
-
-    @Override
-    public void SetIsDone(boolean _isDone) {
-        isDone = _isDone;
+    public void OnHit(Collidable _other) {
+        if(_other.GetType()=="SmurfEntity")
+        {
+            SetIsDone(true);
+        }
     }
 
     @Override
     public void Init(SurfaceView _view) {
-
-        //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.playersprite),3,3,9);
-        spritesheet.Scale(300,300);
-        // Initialize inital positions
-        xPos = 20;
-        yPos = 550;
-        // Any others.
-        imgRadius = (float) (spritesheet.GetHeight() * 0.33);//formerly 0.5
+        //randomise the x and y pos
+        xPos= 400;
+        yPos = 400;
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredpolygonglossy),1,1,1);
+        spritesheet.Scale(37,37);
+        imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
 
     @Override
     public void Update(float _dt) {
 
-        spritesheet.Update(_dt);
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 
@@ -62,33 +52,32 @@ public class EntitySmurf implements EntityBase, Collidable {
     }
 
     @Override
-    public void OnHit(Collidable _other)//Basically docollisionresponse from pphy
-    {
-        if (_other.GetType() == "NextEntity") //Another Entity
-        {
-            SetIsDone(true);
-        }
-        if(_other.GetType()=="EntitySwitch")
-        {
-            //_other.SetIsDone(true);
-        }
-        if(_other.GetType()=="EntityCollectible")
-        {
-            score += 1;
-        }
+    public void Render(Canvas _canvas) {
+        spritesheet.Render(_canvas,(int)xPos,(int)yPos);
     }
 
-    @Override
-    public void Render(Canvas _canvas) {
+    public static EntityCollectible Create()
+    {
+        EntityCollectible result = new EntityCollectible();
+        EntityManager.Instance.AddEntity(result,ENTITY_TYPE.ENT_COLLECTIBLE);
+        return result;
+    }
 
-        spritesheet.Render(_canvas,(int)xPos,(int)yPos);
-
-        //basically RenderMesh() from compg.
+    public static EntityCollectible Create(int _layer)
+    {
+        EntityCollectible result = Create();
+        result.SetRenderLayer(_layer);
+        return result;
     }
 
     @Override
     public boolean IsInit() {
         return isInit;
+    }
+
+    @Override
+    public String GetType() {
+        return "EntityCollectible";
     }
 
     @Override
@@ -98,29 +87,12 @@ public class EntitySmurf implements EntityBase, Collidable {
 
     @Override
     public void SetRenderLayer(int _newLayer) {
-        renderLayer = _newLayer;
-    }
-
-    public static EntitySmurf Create() {
-        EntitySmurf result = new EntitySmurf();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_SMURF);
-        return result;
-    }
-
-    public static EntitySmurf Create(int _layer) {
-        EntitySmurf result = Create();
-        result.SetRenderLayer(_layer);
-        return result;
+        renderLayer=_newLayer;
     }
 
     @Override
     public ENTITY_TYPE GetEntityType() {
-        return ENTITY_TYPE.ENT_SMURF;
-    }
-
-    @Override
-    public String GetType() {
-        return "SmurfEntity";
+        return ENTITY_TYPE.ENT_COLLECTIBLE;
     }
 
     @Override
@@ -135,8 +107,16 @@ public class EntitySmurf implements EntityBase, Collidable {
 
     @Override
     public float GetRadius() {
-        return imgRadius;
+        return 0;
     }
 
+    @Override
+    public boolean IsDone() {
+        return isDone;
+    }
 
+    @Override
+    public void SetIsDone(boolean _isDone) {
+        isDone= _isDone;
+    }
 }
