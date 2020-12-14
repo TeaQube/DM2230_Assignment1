@@ -86,6 +86,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
     @Override
     public void OnExit()
     {
+        BGM.stop();
     }
 	
     @Override

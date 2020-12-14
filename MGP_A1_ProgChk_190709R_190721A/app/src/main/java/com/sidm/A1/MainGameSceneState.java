@@ -5,11 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceView;
+import android.widget.Button;
 
 // Created by TanSiewLan2020
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
+    EntitySmurf player;
+    EntityLeft leftbutton;
+    EntityRight rightbutton;
+    EntityUp upbutton;
+    EntityDown downbutton;
 
     @Override
     public String GetName() {
@@ -20,7 +26,11 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
-        EntitySmurf.Create();
+        player = EntitySmurf.Create();
+        leftbutton = EntityLeft.Create();
+        rightbutton = EntityRight.Create();
+        upbutton = EntityUp.Create();
+        downbutton = EntityDown.Create();
         //use .Create() to create things you want
         // Example to include another Renderview for Pause Button
     }
@@ -44,12 +54,31 @@ public class MainGameSceneState implements StateBase {
 
         EntityManager.Instance.Update(_dt);
 
+        //for button click to move the character
+        if (leftbutton.getClicked() == true)
+        {
+            player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONLEFT);
+        }
+        if (rightbutton.getClicked() == true)
+        {
+            player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONRIGHT);
+        }
+        if (upbutton.getClicked() == true)
+        {
+            player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONUP);
+        }
+        if (downbutton.getClicked() == true)
+        {
+            player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONDOWN);
+        }
+
         //vv deals with transitions
         if (TouchManager.Instance.IsDown()) {
-
             //Example of touch on screen in the main game to trigger back to Main menu
-            //StateManager.Instance.ChangeState("Mainmenu");
+
         }
+
+
     }
 }
 

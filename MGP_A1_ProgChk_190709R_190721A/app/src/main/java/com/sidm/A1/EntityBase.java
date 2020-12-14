@@ -16,6 +16,8 @@ public interface EntityBase
         ENT_WALL,
          ENT_LEFT,
          ENT_RIGHT,
+         ENT_UP,
+         ENT_DOWN,
         ENT_BACKGROUND,
         ENT_SWITCH,
         ENT_DEFAULT,
