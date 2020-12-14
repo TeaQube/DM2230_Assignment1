@@ -20,6 +20,7 @@ public interface EntityBase
          ENT_DOWN,
         ENT_BACKGROUND,
         ENT_SWITCH,
+         ENT_COLLECTIBLE,
         ENT_DEFAULT,
     }
 

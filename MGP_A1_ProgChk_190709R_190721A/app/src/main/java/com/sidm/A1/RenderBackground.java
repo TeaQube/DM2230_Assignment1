@@ -46,7 +46,7 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public void Update(float _dt) {
-        xPos -= _dt * 500;  // How fast it scrolls moving from right to left.
+        xPos -= _dt * 5;  // How fast it scrolls moving from right to left.
 
         if (xPos < - screenWidth){  // xpos
             xPos = 0;
