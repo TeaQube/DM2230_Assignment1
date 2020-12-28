@@ -38,6 +38,10 @@ public class EntityUp implements Collidable, EntityBase {
             {
                 IsClicked = true;
             }
+            else
+            {
+                IsClicked = false;
+            }
         }
     }
 

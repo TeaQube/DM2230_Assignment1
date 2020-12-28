@@ -2,6 +2,7 @@ package com.sidm.A1;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
@@ -17,6 +18,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     private boolean isDone = false;
     int score = 0;
     private boolean[] buttonpress = new boolean[BUTTONPRESSTYPE.NUM_BUTTONS.ordinal()];
+    int screenWidth, screenHeight;
 
     enum BUTTONPRESSTYPE
     {
@@ -49,9 +51,13 @@ public class EntitySmurf implements EntityBase, Collidable {
     public void Init(SurfaceView _view) {
         //vv this should be correct
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
+        //render screenWidth and screenHeight
+        DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
         // Initialize inital positions
         xPos = 20;
-        yPos = 550;
+        yPos = screenHeight / 2;
         // Any others.
         imgRadius = (float) (spritesheet.GetHeight() * 0.33);
         isInit = true;
@@ -67,35 +73,31 @@ public class EntitySmurf implements EntityBase, Collidable {
 
         spritesheet.Update(_dt);
 
-        if (buttonpress[BUTTONPRESSTYPE.BUTTONLEFT.ordinal()] == true)
-        {
-            xPos -= 10;
-            yPos = yPos;
-            buttonpress[BUTTONPRESSTYPE.BUTTONLEFT.ordinal()] = false;
-        }
-        else if (buttonpress[BUTTONPRESSTYPE.BUTTONRIGHT.ordinal()] == true)
-        {
-            xPos += 10;
-            yPos = yPos;
-            buttonpress[BUTTONPRESSTYPE.BUTTONRIGHT.ordinal()] = false;
-        }
-
-         else if (buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] == true)
+        if (buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] == true)
         {
             xPos = xPos;
             yPos -= 10;
             buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] = false;
+            if (yPos <= 0)
+            {
+                yPos = yPos;
+            }
+
         }
-        if (buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] == true)
+        else if (buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] == true)
         {
             xPos = xPos;
             yPos += 10;
             buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] = false;
+            if (yPos >= screenHeight)
+            {
+                yPos = yPos;
+            }
         }
         else
         {
-            xPos = xPos;
-            yPos = yPos;
+           buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] = false;
+           buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] = false;
         }
 
         if (TouchManager.Instance.HasTouch())
@@ -105,7 +107,6 @@ public class EntitySmurf implements EntityBase, Collidable {
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
             {
                 // Collided!
-
                 hasTouched = true;
             }
         }

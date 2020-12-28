@@ -38,6 +38,10 @@ public class EntityDown implements Collidable, EntityBase {
             {
                 IsClicked = true;
             }
+            else
+            {
+                IsClicked = false;
+            }
         }
     }
 
