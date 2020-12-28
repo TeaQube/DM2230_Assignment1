@@ -50,8 +50,9 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.ship2_1),1,1,60);
-        imgRadius = (float) (spritesheet.GetHeight() * 0.33);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.spaceships),1,1,60);
+        spritesheet.Scale(60,80);
+        imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         //render screenWidth and screenHeight
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
@@ -76,7 +77,7 @@ public class EntitySmurf implements EntityBase, Collidable {
         if (buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] == true)
         {
             xPos = xPos;
-            yPos -= 10;
+            yPos -= 30;
             buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] = false;
 
             if (yPos <= 0 + imgRadius)
@@ -88,7 +89,7 @@ public class EntitySmurf implements EntityBase, Collidable {
         if (buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] == true)
         {
             xPos = xPos;
-            yPos += 10;
+            yPos += 30;
             buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] = false;
 
             if (yPos >= 1080 - imgRadius)
