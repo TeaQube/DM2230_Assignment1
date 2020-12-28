@@ -57,7 +57,7 @@ public class EntitySmurf implements EntityBase, Collidable {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
         // Initialize inital positions
-        xPos = 120 + imgRadius;
+        xPos = 180 + imgRadius;
         yPos = screenHeight / 2;
         // Any others.
         isInit = true;
