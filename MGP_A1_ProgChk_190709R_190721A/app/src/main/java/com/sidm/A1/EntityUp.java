@@ -3,6 +3,7 @@ package com.sidm.A1;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.text.method.Touch;
+import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
 public class EntityUp implements Collidable, EntityBase {
@@ -10,6 +11,7 @@ public class EntityUp implements Collidable, EntityBase {
     private int renderLayer = 0;
     private float xPos, yPos, xDir, yDir, imgRadius;
     private Sprite spritesheet = null;
+    int screenWidth, screenHeight;
 
     @Override
     public boolean IsDone() {
@@ -24,9 +26,14 @@ public class EntityUp implements Collidable, EntityBase {
     public void Init(SurfaceView _view) {
         //super.Init(_view);
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.upbutton),1,1,60);
-        xPos = 400;
-        yPos = 700;
+        //init screenwidth and screenheight
+        DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
+        xPos = 0 + imgRadius;
+        yPos = screenHeight - imgRadius;
         imgRadius = spritesheet.GetHeight() / 2;
+
     }
 
     @Override

@@ -50,16 +50,16 @@ public class EntitySmurf implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurfsprite),4,4,60);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.ship2_1),1,1,60);
+        imgRadius = (float) (spritesheet.GetHeight() * 0.33);
         //render screenWidth and screenHeight
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
         // Initialize inital positions
-        xPos = 20;
+        xPos = 120 + imgRadius;
         yPos = screenHeight / 2;
         // Any others.
-        imgRadius = (float) (spritesheet.GetHeight() * 0.33);
         isInit = true;
     }
 
@@ -78,26 +78,23 @@ public class EntitySmurf implements EntityBase, Collidable {
             xPos = xPos;
             yPos -= 10;
             buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] = false;
-            if (yPos <= 0)
+
+            if (yPos <= 0 + imgRadius)
             {
-                yPos = yPos;
+                yPos = 0 + imgRadius;
             }
 
         }
-        else if (buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] == true)
+        if (buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] == true)
         {
             xPos = xPos;
             yPos += 10;
             buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] = false;
-            if (yPos >= screenHeight)
+
+            if (yPos >= 1080 - imgRadius)
             {
-                yPos = yPos;
+                yPos = 1080 - imgRadius;
             }
-        }
-        else
-        {
-           buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] = false;
-           buttonpress[BUTTONPRESSTYPE.BUTTONDOWN.ordinal()] = false;
         }
 
         if (TouchManager.Instance.HasTouch())

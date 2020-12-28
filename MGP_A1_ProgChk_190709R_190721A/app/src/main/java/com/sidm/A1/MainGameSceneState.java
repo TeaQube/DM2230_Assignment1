@@ -12,8 +12,6 @@ import android.widget.Button;
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
     EntitySmurf player;
-    EntityLeft leftbutton;
-    EntityRight rightbutton;
     EntityUp upbutton;
     EntityDown downbutton;
 
@@ -30,8 +28,6 @@ public class MainGameSceneState implements StateBase {
         EntityCollectible.Create();
         EntitySwitch.Create();
         player = EntitySmurf.Create();
-        leftbutton = EntityLeft.Create();
-        rightbutton = EntityRight.Create();
         upbutton = EntityUp.Create();
         downbutton = EntityDown.Create();
         //use .Create() to create things you want
@@ -58,14 +54,6 @@ public class MainGameSceneState implements StateBase {
         EntityManager.Instance.Update(_dt);
 
         //for button click to move the character
-        if (leftbutton.getClicked() == true)
-        {
-            player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONLEFT);
-        }
-        if (rightbutton.getClicked() == true)
-        {
-            player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONRIGHT);
-        }
         if (upbutton.getClicked() == true)
         {
             player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONUP);
