@@ -25,7 +25,7 @@ public class RenderTextEntity implements EntityBase {
     @Override
     public void Init(SurfaceView _view)
     {
-        myfont = Typeface.createFromAsset(_view.getContext().getAssets(),"fonts/gemcut.otf");
+        myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/gemcut.otf");
     }
 
     @Override
@@ -53,6 +53,20 @@ public class RenderTextEntity implements EntityBase {
             _canvas.drawText("FPS: " + fps, 30, 80, paint); // To render text is drawText FPS: 60
             // drawText(String text, float x, float y, Paint paint)
             // Draw the text, with origin at (x,y), using the specified paint
+    }
+
+    public static RenderTextEntity Create()
+    {
+        RenderTextEntity result = new RenderTextEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TEXT);
+        return result;
+    }
+
+    public static RenderTextEntity Create(int _layer)
+    {
+        RenderTextEntity result = Create();
+        result.SetRenderLayer(_layer);
+        return result;
     }
 
     @Override
