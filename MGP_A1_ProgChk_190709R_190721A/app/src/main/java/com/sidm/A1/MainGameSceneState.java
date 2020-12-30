@@ -28,6 +28,7 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         EntityCollectible.Create();
         EntitySwitch.Create();
+        PauseButton.Create();
         player = EntitySmurf.Create();
         upbutton = EntityUp.Create();
         downbutton = EntityDown.Create();
