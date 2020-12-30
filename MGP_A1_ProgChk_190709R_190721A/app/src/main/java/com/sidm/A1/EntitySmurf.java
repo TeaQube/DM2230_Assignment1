@@ -24,8 +24,6 @@ public class EntitySmurf implements EntityBase, Collidable {
     {
         BUTTONUP,
         BUTTONDOWN,
-        BUTTONLEFT,
-        BUTTONRIGHT,
         NUM_BUTTONS,
     }
 
