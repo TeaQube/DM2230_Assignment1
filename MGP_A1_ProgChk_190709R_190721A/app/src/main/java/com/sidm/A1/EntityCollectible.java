@@ -14,6 +14,7 @@ public class EntityCollectible implements EntityBase, Collidable {
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
+    private float rand_float;
 
     @Override
     public void OnHit(Collidable _other) {
@@ -26,8 +27,9 @@ public class EntityCollectible implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //randomise the x and y pos
-        xPos= 400;
-        yPos = 400;
+        rand_float = (float) Math.random();
+        xPos= 1900;
+        yPos = 1080* rand_float;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredpolygonglossy),1,1,1);
         spritesheet.Scale(37,37);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
@@ -37,6 +39,7 @@ public class EntityCollectible implements EntityBase, Collidable {
     @Override
     public void Update(float _dt) {
 
+        xPos -= _dt * 50;
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 

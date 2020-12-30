@@ -14,6 +14,7 @@ public class MainGameSceneState implements StateBase {
     EntitySmurf player;
     EntityUp upbutton;
     EntityDown downbutton;
+    private double rand_double;
 
 
     @Override
@@ -50,6 +51,14 @@ public class MainGameSceneState implements StateBase {
 
     @Override
     public void Update(float _dt) {
+        timer += _dt;
+        rand_double = Math.random();
+
+        if(rand_double >= 0.3 && timer >= 1.0f)
+        {
+            EntityCollectible.Create();
+            timer = 0.0f;
+        }
 
         EntityManager.Instance.Update(_dt);
 
