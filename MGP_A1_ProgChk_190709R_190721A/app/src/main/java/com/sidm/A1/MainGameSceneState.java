@@ -27,12 +27,12 @@ public class MainGameSceneState implements StateBase {
     {
         RenderBackground.Create();
         EntityCollectible.Create();
-        EntitySwitch.Create();
+        //EntitySwitch.Create();
         PauseButton.Create();
         player = EntitySmurf.Create();
         upbutton = EntityUp.Create();
         downbutton = EntityDown.Create();
-        //RenderTextEntity.Create();
+        RenderTextEntity.Create();
         //use .Create() to create things you want
         // Example to include another Renderview for Pause Button
     }

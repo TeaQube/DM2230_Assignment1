@@ -46,7 +46,7 @@ public class RenderTextEntity implements EntityBase {
     @Override
     public void Render(Canvas _canvas) {
             Paint paint = new Paint(); // Use paint to render text on screen
-            paint.setARGB(255, 0, 0, 0); // Alpha, R, G, B Can make it a variable
+            paint.setARGB(255, 255, 255, 255); // Alpha, R, G, B Can make it a variable
             paint.setStrokeWidth(200); // Stroke width is just the thickness of the appearance of the text
             paint.setTypeface(myfont); // using the type of font we defined
             paint.setTextSize(70);     // Text size
