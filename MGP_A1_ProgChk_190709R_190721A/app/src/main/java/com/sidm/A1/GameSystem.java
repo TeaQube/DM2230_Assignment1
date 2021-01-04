@@ -26,8 +26,6 @@ public class GameSystem {
         StateManager.Instance.AddState(new GamePage());
         StateManager.Instance.AddState(new OptionsMenu());
         StateManager.Instance.AddState(new MainGameSceneState());
-        //StateManager.Instance.AddState(new InstructionSceneState());
-        //StateManager.Instance.AddState(new HelpPage());
     }
 
     //stuff for pausing the game vv
