@@ -56,21 +56,28 @@ public class PauseButton implements EntityBase{
 
     @Override
     public void Update(float _dt) {
-        /*
-        if (TouchManager.Instance.HasTouch() && TouchManager.Instance.IsDown())
+        if(TouchManager.Instance.HasTouch())
         {
+            if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
                 float imgRadius = scaledbmpP.getHeight() * 0.5f;
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius))
-            {
-                GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
-                isPaused = true;
-            }
-            else
-            {
-                isPaused = false;
+
+                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
+                    isPaused = true;
+
+                    //added (Week12)
+                    // Button got clicked show the popup dialog
+                    if (PauseConfirmDialogFragment.IsShown)
+                        return;
+
+                    PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
+                    newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
+
+                }
             }
         }
-         */
+        else
+
+            isPaused = false;
     }
 
     @Override
