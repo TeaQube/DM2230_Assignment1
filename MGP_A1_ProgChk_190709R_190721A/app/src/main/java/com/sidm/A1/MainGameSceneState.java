@@ -85,10 +85,7 @@ public class MainGameSceneState implements StateBase {
         //vv deals with transitions
         if (TouchManager.Instance.IsDown()) {
             //Example of touch on screen in the main game to trigger back to Main menu
-
         }
-
-
     }
 }
 
