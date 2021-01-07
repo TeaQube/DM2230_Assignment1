@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
+import androidx.fragment.app.FragmentManager;
 
 public class PauseButton implements EntityBase{
 
@@ -56,21 +57,36 @@ public class PauseButton implements EntityBase{
 
     @Override
     public void Update(float _dt) {
-        /*
-        if (TouchManager.Instance.HasTouch() && TouchManager.Instance.IsDown())
+        if(TouchManager.Instance.HasTouch())
         {
-                float imgRadius = scaledbmpP.getHeight() * 0.5f;
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius))
-            {
-                GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
-                isPaused = true;
-            }
-            else
-            {
-                isPaused = false;
+            if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
+
+
+                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
+                    isPaused = true;
+
+                    // New this week -- Week 12 TODAY!!
+                    // Button got clicked show the popup dialog
+                    if (PauseConfirmDialogFragment.IsShown)
+                    {
+                        return;
+                    }
+
+                    PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
+                    //newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
+
+                    // AudioManager.Instance.PlayAudio(R.raw.clicksound);
+
+                    // If just want a pause without the popup dialog
+                    // GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused()); // Before
+                }
             }
         }
-         */
+        else
+        {
+            isPaused = false;
+        }
+
     }
 
     @Override
