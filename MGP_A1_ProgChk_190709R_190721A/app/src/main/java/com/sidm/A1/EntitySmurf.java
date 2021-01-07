@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
+    private static int score;
     private Bitmap bmp = null; // Define image object name (bmp)
     private Bitmap scaledbmp = null;
     private Sprite spritesheet = null; //used for the spritesheet.
@@ -16,7 +17,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     private float xPos, yPos, xDir, yDir, lifeTime, imgRadius;
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
-    int score = 0;
+
     private boolean[] buttonpress = new boolean[BUTTONPRESSTYPE.NUM_BUTTONS.ordinal()];
     int screenWidth, screenHeight;
 
@@ -185,5 +186,14 @@ public class EntitySmurf implements EntityBase, Collidable {
         return imgRadius;
     }
 
+    //just not too bright way to do things, but hey.
+    public void SetScore(int _score)
+    {
+        score += _score;
+    }
 
+    public static int GetScore()
+    {
+        return score;
+    }
 }

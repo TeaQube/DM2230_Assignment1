@@ -52,6 +52,10 @@ public class EntityCollectible implements EntityBase, Collidable {
             }
 
         }
+        if(xPos <= 0.0f) {
+            isDone = true;
+        }
+
     }
 
     @Override
