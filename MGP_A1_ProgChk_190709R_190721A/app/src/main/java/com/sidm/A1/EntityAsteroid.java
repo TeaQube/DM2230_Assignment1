@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
-public class EntityAsteroid implements EntityBase, Collidable{
+public class EntityAsteroid implements EntityBase, Collidable {
 
     private Bitmap bmp = null; // Define image object name (bmp)
     private Sprite spritesheet = null; //used for the spritesheet.
@@ -17,13 +17,21 @@ public class EntityAsteroid implements EntityBase, Collidable{
     private float rand_float;
 
     @Override
-    public void Init(SurfaceView _view) {
+    public void OnHit(Collidable _other) {
+        if(_other.GetType()=="SmurfEntity")
+        {
+            SetIsDone(true);
+        }
+    }
 
+    @Override
+    public void Init(SurfaceView _view) {
+        //randomise the x and y pos
         rand_float = (float) Math.random();
         xPos= 1900;
         yPos = 1080* rand_float;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.meteor),1,1,1);
-        spritesheet.Scale(40,40);
+        spritesheet.Scale(37,37);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
@@ -55,14 +63,6 @@ public class EntityAsteroid implements EntityBase, Collidable{
         spritesheet.Render(_canvas,(int)xPos,(int)yPos);
     }
 
-    @Override
-    public void OnHit(Collidable _other) {
-        if(_other.GetType()=="SmurfEntity")
-        {
-            SetIsDone(true);
-        }
-    }
-
     public static EntityAsteroid Create()
     {
         EntityAsteroid result = new EntityAsteroid();
@@ -78,8 +78,28 @@ public class EntityAsteroid implements EntityBase, Collidable{
     }
 
     @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+    @Override
     public String GetType() {
         return "EntityAsteroid";
+    }
+
+    @Override
+    public int GetRenderLayer() {
+        return renderLayer;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer) {
+        renderLayer=_newLayer;
+    }
+
+    @Override
+    public ENTITY_TYPE GetEntityType() {
+        return ENTITY_TYPE.ENT_ASTEROID;
     }
 
     @Override
@@ -94,10 +114,8 @@ public class EntityAsteroid implements EntityBase, Collidable{
 
     @Override
     public float GetRadius() {
-        return imgRadius;
+        return 0;
     }
-
-
 
     @Override
     public boolean IsDone() {
@@ -106,26 +124,6 @@ public class EntityAsteroid implements EntityBase, Collidable{
 
     @Override
     public void SetIsDone(boolean _isDone) {
-        isDone = _isDone;
-    }
-
-    @Override
-    public boolean IsInit() {
-        return false;
-    }
-
-    @Override
-    public int GetRenderLayer() {
-        return 0;
-    }
-
-    @Override
-    public void SetRenderLayer(int _newLayer) {
-
-    }
-
-    @Override
-    public ENTITY_TYPE GetEntityType() {
-        return ENTITY_TYPE.ENT_ASTEROID;
+        isDone= _isDone;
     }
 }

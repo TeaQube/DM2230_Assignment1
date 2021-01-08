@@ -68,7 +68,7 @@ public class MainGameSceneState implements StateBase {
             }
             else
             {
-                //EntityAsteroid.Create();
+                EntityAsteroid.Create();
             }
             timer = 0.0f;
         }
