@@ -7,6 +7,7 @@ import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
     private static int score;
+    private static int health;
     private Bitmap bmp = null; // Define image object name (bmp)
     private Bitmap scaledbmp = null;
     private Sprite spritesheet = null; //used for the spritesheet.
@@ -52,7 +53,7 @@ public class EntitySmurf implements EntityBase, Collidable {
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.spaceships),1,1,60);
         spritesheet.Scale(60,80);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
-
+        health = 100;
         //render screenWidth and screenHeight
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
@@ -125,6 +126,10 @@ public class EntitySmurf implements EntityBase, Collidable {
         {
             score += 1;
         }
+        if(_other.GetType()=="EntityAsteroid")
+        {
+            health -= 5;
+        }
     }
 
     @Override
@@ -196,4 +201,6 @@ public class EntitySmurf implements EntityBase, Collidable {
     {
         return score;
     }
+
+    public static int GetHealth(){return health;}
 }

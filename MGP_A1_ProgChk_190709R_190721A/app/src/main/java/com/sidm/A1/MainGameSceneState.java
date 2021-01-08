@@ -26,7 +26,8 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
-        EntityCollectible.Create();
+        //EntityAsteroid.Create();
+        //EntityCollectible.Create();
         //EntitySwitch.Create();
         PauseButton.Create();
         player = EntitySmurf.Create();
@@ -57,9 +58,18 @@ public class MainGameSceneState implements StateBase {
         timer += _dt;
         rand_double = Math.random();
 
-        if(rand_double >= 0.3 && timer >= 1.0f)
+        //note: this just randomly spawns collectables, make it less often i suppose?
+        //TODO: make funcs to spawn like blocs of GOs?
+        if( timer >= 2.0f)
         {
-            EntityCollectible.Create();
+            if(rand_double >= 0.5)
+            {
+                EntityCollectible.Create();
+            }
+            else
+            {
+                //EntityAsteroid.Create();
+            }
             timer = 0.0f;
         }
 
