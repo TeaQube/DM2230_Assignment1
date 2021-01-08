@@ -9,19 +9,21 @@
     >
 
     <!-- for play button -->
+
+    <!-- for options button -->
+
     <ImageButton
         android:id="@+id/btn_play"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="470dp"
         android:layout_marginTop="160dp"
-        android:layout_marginRight="448dp"
+        android:layout_marginEnd="470dp"
+        android:layout_marginRight="444dp"
         android:backgroundTint="@color/teal_700"
-        android:src="@drawable/playbutton"/>
+        android:src="@drawable/playbutton" />
 
-    <!-- for options button -->
     <ImageButton
         android:id="@+id/btn_options"
         android:layout_width="160dp"

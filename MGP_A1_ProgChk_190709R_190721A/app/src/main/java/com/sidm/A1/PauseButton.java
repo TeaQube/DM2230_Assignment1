@@ -58,8 +58,10 @@ public class PauseButton implements EntityBase{
     public void Update(float _dt) {
         if(TouchManager.Instance.HasTouch())
         {
-            if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
-                float imgRadius = scaledbmpP.getHeight() * 0.5f;
+            if (TouchManager.Instance.IsDown() && !isPaused)
+            {   // Check touch collision here
+                //-- this is commented out to test for bug --
+                //float imgRadius = scaledbmpP.getHeight() * 0.5f;
 
                 if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
                     isPaused = true;
