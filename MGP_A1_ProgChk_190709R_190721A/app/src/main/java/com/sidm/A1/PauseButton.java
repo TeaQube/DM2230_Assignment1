@@ -12,16 +12,13 @@ public class PauseButton implements EntityBase{
     private boolean isPaused = false;
 
     private int renderLayer =0;
+
     private Bitmap bmpP = null;
     private Bitmap scaledbmpP = null;
 
-    private Sprite spritesheet = null; //used for the spritesheet.
-    private Sprite spritesheet2 = null;
-
-    private Bitmap bmpUp = null;
-    private Bitmap scaledBMPUP = null;
-
-    private float xPos, yPos, imgRadius;
+    //pos to indicate where to draw button
+    private float xPos, yPos;
+    //scale the image based on the screen size
     private int screenWidth, screenHeight;
 
     @Override
@@ -36,20 +33,20 @@ public class PauseButton implements EntityBase{
 
     @Override
     public void Init(SurfaceView _view) {
-        //vv this should be correct
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.pausebutton),1,1,60);
-        spritesheet2 = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.pausebutton), 1, 1, 60);
-        imgRadius = (float) (spritesheet.GetHeight() * 0.5);
+        //call drawable of pause button
+        bmpP = ResourceManager.Instance.GetBitmap(R.drawable.pausebutton);
 
         // Find screen width and screen height
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
 
-        // My own position adjustment for the Pause button placement
-        // Change accordingly
-        xPos = screenWidth - imgRadius;
-        yPos = 0 + imgRadius;
+        //scale image accordingly / based on the screen size
+        scaledbmpP = Bitmap.createScaledBitmap(bmpP, screenWidth / 4, screenHeight / 4, true);
+
+        //adjust position of pause button
+        xPos = screenWidth - 100;
+        yPos = 150;
 
         isInit = true;
     }
@@ -60,29 +57,40 @@ public class PauseButton implements EntityBase{
         {
             if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
                 float imgRadius = scaledbmpP.getHeight() * 0.5f;
+                float tempX = TouchManager.Instance.GetPosX();
+                float tempY = TouchManager.Instance.GetPosY();
 
-                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
-                    isPaused = true;
+                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.1f, xPos, yPos, imgRadius)) {
+                    isPaused = true; // Meant user had pressed the Pause button!!!
 
-                    //added (Week12)
-                    // Button got clicked show the popup dialog
                     if (PauseConfirmDialogFragment.IsShown)
                         return;
 
                     PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
                     newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
 
+                    // When button is pressed, U can play an audio clip
+                    // AudioManager.Instance.PlayAudio(R.raw.clicksound);
+
+                    // If just want a pause without the (popup dialog --> No done yet.)
+                    // Method already written in your GameSystem class from Week 5
+                    GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
+                   // if (!EntityManager.Instance.GetEntity(ENTITY_TYPE.ENT_PAUSE)) //If PauseMenu doesn't exist
+                     //   PauseButton.Create();
                 }
             }
         }
         else
-
             isPaused = false;
     }
 
+
     @Override
     public void Render(Canvas _canvas) {
-        spritesheet.Render(_canvas,(int)xPos,(int)yPos);
+        if (isPaused == false)
+        {
+            _canvas.drawBitmap(scaledbmpP, xPos - scaledbmpP.getWidth() * 0.5f, yPos - scaledbmpP.getHeight() * 0.5f, null);
+        }
     }
 
     @Override
