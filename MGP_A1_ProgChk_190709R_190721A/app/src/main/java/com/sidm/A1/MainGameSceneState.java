@@ -35,6 +35,7 @@ public class MainGameSceneState implements StateBase {
         downbutton = EntityDown.Create();
         RenderTextEntity.Create();
         RenderScoreText.Create();
+        RenderHealthText.Create();
         //use .Create() to create things you want
         // Example to include another Renderview for Pause Button
     }
