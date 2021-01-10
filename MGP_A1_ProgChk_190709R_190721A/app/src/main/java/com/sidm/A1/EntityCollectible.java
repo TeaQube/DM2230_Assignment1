@@ -43,14 +43,22 @@ public class EntityCollectible implements EntityBase, Collidable {
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched) {
+            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched)
+            {
                 // Collided!
 
                 hasTouched = true;
                 xPos = TouchManager.Instance.GetPosX();
                 yPos = TouchManager.Instance.GetPosY();
-            }
 
+                //to update the score when collision is true
+                int currScore = GameSystem.Instance.GetValueFromSave("Score");
+                ++currScore;
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetValueInSave("Score", currScore);
+                GameSystem.Instance.SaveEditEnd();
+
+            }
         }
     }
 

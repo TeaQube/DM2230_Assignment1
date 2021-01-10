@@ -14,7 +14,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
-public class GamePage extends Activity implements StateBase {
+import androidx.fragment.app.FragmentActivity;
+
+public class GamePage extends FragmentActivity implements StateBase {
 
     public static GamePage Instance = null;
 
@@ -72,5 +74,8 @@ public class GamePage extends Activity implements StateBase {
     public void Update(float _dt) {
 
     }
+
+
+
 }
 
