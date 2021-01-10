@@ -14,7 +14,7 @@ public class PauseButton implements EntityBase{
     private int renderLayer =0;
 
     private Bitmap bmpP = null;
-    private Bitmap scaledbmpP = null;
+    private Bitmap scaledbmp = null;
 
     //pos to indicate where to draw button
     private float xPos, yPos;
@@ -42,7 +42,7 @@ public class PauseButton implements EntityBase{
         screenHeight = metrics.heightPixels;
 
         //scale image accordingly / based on the screen size
-        scaledbmpP = Bitmap.createScaledBitmap(bmpP, screenWidth / 4, screenHeight / 4, true);
+        scaledbmp = Bitmap.createScaledBitmap(bmpP, screenWidth / 4, screenHeight / 4, true);
 
         //adjust position of pause button
         xPos = screenWidth - 100;
@@ -62,7 +62,7 @@ public class PauseButton implements EntityBase{
                 //float imgRadius = scaledbmpP.getHeight() * 0.5f;
 =======
             if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
-                float imgRadius = scaledbmpP.getHeight() * 0.5f;
+                float imgRadius = scaledbmp.getHeight() * 0.5f;
                 float tempX = TouchManager.Instance.GetPosX();
                 float tempY = TouchManager.Instance.GetPosY();
 >>>>>>> 7c520323c4df15a8b2820245dc018ddbcf7d3b15
@@ -96,7 +96,7 @@ public class PauseButton implements EntityBase{
     public void Render(Canvas _canvas) {
         if (isPaused == false)
         {
-            _canvas.drawBitmap(scaledbmpP, xPos - scaledbmpP.getWidth() * 0.5f, yPos - scaledbmpP.getHeight() * 0.5f, null);
+            _canvas.drawBitmap(scaledbmp, xPos - scaledbmp.getWidth() * 0.5f, yPos - scaledbmp.getHeight() * 0.5f, null);
         }
     }
 
@@ -115,13 +115,15 @@ public class PauseButton implements EntityBase{
       renderLayer = _newLayer;
     }
 
-    public static PauseButton Create() {
+    public static PauseButton Create()
+    {
         PauseButton result = new PauseButton();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_PAUSE);
         return result;
     }
 
-    public static PauseButton Create(int _layer){
+    public static PauseButton Create(int _layer)
+    {
         PauseButton result = Create();
         result.SetRenderLayer(_layer);
         return result;
