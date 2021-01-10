@@ -9,18 +9,14 @@ import android.view.SurfaceView;
 import android.graphics.Typeface;
 
 //note this is for the fps count only, DO NOT call this for everything. I will make a different version that is less rigid
-public class RenderTextEntity implements EntityBase {
+public class RenderScoreText implements EntityBase {
 
     Paint paint = new Paint();
     private int red = 0;
     private int blue = 0;
     private int green = 0;
     private boolean isDone = false;
-    int frameCount;
-    long lastTime = 0;
-    long lastFPSTime = 0;
-    float fps;
-
+    int score;
     Typeface myfont;
 
     @Override
@@ -31,42 +27,34 @@ public class RenderTextEntity implements EntityBase {
 
     @Override
     public void Update(float _dt) {
-        frameCount++;
-        long currentTime = System.currentTimeMillis();
 
-        lastTime = currentTime;
+        score = EntitySmurf.GetScore();
 
-        if(currentTime - lastFPSTime > 1000)
-        {
-            fps = (frameCount * 1000.f) / (currentTime - lastFPSTime);
-            lastFPSTime = currentTime;
-            frameCount = 0;
-        }
     }
 
     @Override
     public void Render(Canvas _canvas) {
-            Paint paint = new Paint(); // Use paint to render text on screen
-            paint.setARGB(255, 255, 255, 255); // Alpha, R, G, B Can make it a variable
-            paint.setStrokeWidth(200); // Stroke width is just the thickness of the appearance of the text
-            paint.setTypeface(myfont); // using the type of font we defined
-            paint.setTextSize(70);     // Text size
-            _canvas.drawText("FPS: " + fps, 30, 80, paint); // To render text is drawText FPS: 60
+        Paint paint = new Paint(); // Use paint to render text on screen
+        paint.setARGB(255, 255, 255, 255); // Alpha, R, G, B Can make it a variable
+        paint.setStrokeWidth(200); // Stroke width is just the thickness of the appearance of the text
+        paint.setTypeface(myfont); // using the type of font we defined
+        paint.setTextSize(70);     // Text size
+        _canvas.drawText("Score: " + score, 30, 140, paint); // To render text is drawText FPS: 60
 
-            // drawText(String text, float x, float y, Paint paint)
-            // Draw the text, with origin at (x,y), using the specified paint
+        // drawText(String text, float x, float y, Paint paint)
+        // Draw the text, with origin at (x,y), using the specified paint
     }
 
-    public static RenderTextEntity Create()
+    public static RenderScoreText Create()
     {
-        RenderTextEntity result = new RenderTextEntity();
+        RenderScoreText result = new RenderScoreText();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_TEXT);
         return result;
     }
 
-    public static RenderTextEntity Create(int _layer)
+    public static RenderScoreText Create(int _layer)
     {
-        RenderTextEntity result = Create();
+        RenderScoreText result = Create();
         result.SetRenderLayer(_layer);
         return result;
     }
@@ -101,3 +89,4 @@ public class RenderTextEntity implements EntityBase {
         isDone = _isDone;
     }
 }
+

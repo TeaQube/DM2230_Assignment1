@@ -23,6 +23,7 @@ public interface EntityBase
          ENT_COLLECTIBLE,
         ENT_PAUSE,
          ENT_TEXT,
+         ENT_ASTEROID,
         ENT_DEFAULT,
     }
 
