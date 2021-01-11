@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
+//by ernst
 public class EntityAsteroid implements EntityBase, Collidable {
 
     private Bitmap bmp = null; // Define image object name (bmp)

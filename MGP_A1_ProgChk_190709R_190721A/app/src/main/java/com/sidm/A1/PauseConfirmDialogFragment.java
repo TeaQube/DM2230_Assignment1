@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import android.content.DialogInterface;
 
+//by qing bing
 public class PauseConfirmDialogFragment extends DialogFragment
 {
     //to check if dialog is shown

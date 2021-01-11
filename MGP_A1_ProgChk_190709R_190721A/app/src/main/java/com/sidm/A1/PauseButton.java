@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
+//by qing bing
 public class PauseButton implements EntityBase{
 
     private boolean isDone = false;

@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
 //TODO: Make other forms of collectibles in the form of powerup, health, buffs and debuffs
+//by ernst
 public class EntityCollectible implements EntityBase, Collidable {
 
     private Bitmap bmp = null; // Define image object name (bmp)
