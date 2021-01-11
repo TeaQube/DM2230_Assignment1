@@ -77,7 +77,7 @@ public class PauseButton implements EntityBase{
 
                         // If just want a pause without the (popup dialog --> No done yet.)
                         // Method already written in your GameSystem class from Week 5
-                        GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
+                        GameSystem.Instance.SetIsPaused(GameSystem.Instance.GetIsPaused());
                         // if (!EntityManager.Instance.GetEntity(ENTITY_TYPE.ENT_PAUSE)) //If PauseMenu doesn't exist
                         //   PauseButton.Create();
                     }
