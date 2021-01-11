@@ -39,6 +39,9 @@ public class EntityUp implements Collidable, EntityBase {
     @Override
     public void Update(float _dt)
     {
+        if(GameSystem.Instance.GetIsPaused())
+            return;
+
         if (TouchManager.Instance.HasTouch() && TouchManager.Instance.IsDown())
         {
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius))

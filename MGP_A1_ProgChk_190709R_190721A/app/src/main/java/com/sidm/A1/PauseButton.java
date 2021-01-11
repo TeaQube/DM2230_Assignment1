@@ -42,48 +42,39 @@ public class PauseButton implements EntityBase{
         screenHeight = metrics.heightPixels;
 
         //scale image accordingly / based on the screen size
-        scaledbmp = Bitmap.createScaledBitmap(bmpP, screenWidth / 4, screenHeight / 4, true);
+        scaledbmp = Bitmap.createScaledBitmap(bmpP, screenWidth /8, screenHeight /8, true);
 
         //adjust position of pause button
-        xPos = screenWidth - 100;
-        yPos = 150;
+        xPos = screenWidth - 130;
+        yPos = 90;
 
         isInit = true;
     }
 
     @Override
     public void Update(float _dt) {
-        if (TouchManager.Instance.HasTouch()) {
+        if(TouchManager.Instance.HasTouch()) {
             if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
-                //-- this is commented out to test for bug --
-                //float imgRadius = scaledbmpP.getHeight() * 0.5f;
+                float imgRadius = scaledbmp.getHeight() * 0.5f;
 
-                if (TouchManager.Instance.IsDown() && !isPaused) {   // Check touch collision here
-                    float imgRadius = scaledbmp.getHeight() * 0.5f;
-                    float tempX = TouchManager.Instance.GetPosX();
-                    float tempY = TouchManager.Instance.GetPosY();
+                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius)) {
+                    isPaused = true;
 
-                    if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.1f, xPos, yPos, imgRadius)) {
-                        isPaused = true; // Meant user had pressed the Pause button!!!
+                    // When button is pressed, U can play an audio clip
+                    // AudioManager.Instance.PlayAudio(R.raw.clicksound);
+                    //PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
+                    //newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
+                    GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
 
-                        if (PauseConfirmDialogFragment.IsShown)
-                            return;
-
-                        PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
-                        newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
-
-                        // When button is pressed, U can play an audio clip
-                        // AudioManager.Instance.PlayAudio(R.raw.clicksound);
-
-                        // If just want a pause without the (popup dialog --> No done yet.)
-                        // Method already written in your GameSystem class from Week 5
-                        GameSystem.Instance.SetIsPaused(GameSystem.Instance.GetIsPaused());
-                        // if (!EntityManager.Instance.GetEntity(ENTITY_TYPE.ENT_PAUSE)) //If PauseMenu doesn't exist
-                        //   PauseButton.Create();
-                    }
+                    // If just want a pause without the (popup dialog --> No done yet.)
+                    // Method already written in your GameSystem class from Week 5
+                    //GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
                 }
-            } else
-                isPaused = false;
+            }
+        }
+        else
+        {
+            isPaused = false;
         }
     }
 

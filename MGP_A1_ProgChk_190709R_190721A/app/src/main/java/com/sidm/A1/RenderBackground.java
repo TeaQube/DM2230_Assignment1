@@ -46,6 +46,10 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public void Update(float _dt) {
+
+        if(GameSystem.Instance.GetIsPaused())
+            return;
+
         xPos -= _dt * 5;  // How fast it scrolls moving from right to left.
 
         if (xPos < - screenWidth){  // xpos

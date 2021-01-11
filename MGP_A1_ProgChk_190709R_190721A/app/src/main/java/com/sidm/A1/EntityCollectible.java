@@ -40,6 +40,9 @@ public class EntityCollectible implements EntityBase, Collidable {
     @Override
     public void Update(float _dt) {
 
+        if(GameSystem.Instance.GetIsPaused())
+            return;
+
         xPos -= _dt * 50;
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image

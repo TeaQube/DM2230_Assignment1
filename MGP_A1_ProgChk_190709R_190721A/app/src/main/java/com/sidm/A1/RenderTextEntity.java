@@ -31,6 +31,10 @@ public class RenderTextEntity implements EntityBase {
 
     @Override
     public void Update(float _dt) {
+
+        if(GameSystem.Instance.GetIsPaused())
+            return;
+
         frameCount++;
         long currentTime = System.currentTimeMillis();
 

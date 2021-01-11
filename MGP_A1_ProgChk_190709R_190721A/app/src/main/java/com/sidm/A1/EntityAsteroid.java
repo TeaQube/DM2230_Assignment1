@@ -38,6 +38,8 @@ public class EntityAsteroid implements EntityBase, Collidable {
 
     @Override
     public void Update(float _dt) {
+        if(GameSystem.Instance.GetIsPaused())
+            return;
 
         xPos -= _dt * 50;
         if (TouchManager.Instance.HasTouch()) {

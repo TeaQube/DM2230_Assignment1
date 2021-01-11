@@ -64,6 +64,7 @@ public class MainGameSceneState implements StateBase {
 
     @Override
     public void Update(float _dt) {
+
         timer += _dt;
         rand_double = Math.random();
 
@@ -99,7 +100,6 @@ public class MainGameSceneState implements StateBase {
         }
 
         //vv deals with transitions
-
         if (GameSystem.Instance.GetIsPaused())
         {
             if (TouchManager.Instance.IsDown())
