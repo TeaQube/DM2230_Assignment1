@@ -53,7 +53,7 @@ public class EntitySmurf implements EntityBase, Collidable {
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.spaceships),1,1,60);
         spritesheet.Scale(60,80);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
-        health = 100;
+        health = 70;
         //render screenWidth and screenHeight
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;
@@ -118,17 +118,26 @@ public class EntitySmurf implements EntityBase, Collidable {
         {
             SetIsDone(true);
         }
-        if(_other.GetType()=="EntitySwitch")
+        switch (_other.GetType())
         {
-            //_other.SetIsDone(true);
-        }
-        if(_other.GetType()=="EntityCollectible")
-        {
-            score += 1;
-        }
-        if(_other.GetType()=="EntityAsteroid")
-        {
-            health -= 5;
+            case "EntityAsteroid":
+            {
+                health -= 5;
+                break;
+            }
+            case "EntityCollectible":
+            {
+                score += 1;
+                break;
+            }
+            case "EntityHealthPickUp":
+            {
+                if(health <= 99)
+                {
+                    health += 5;
+                }
+                break;
+            }
         }
     }
 
