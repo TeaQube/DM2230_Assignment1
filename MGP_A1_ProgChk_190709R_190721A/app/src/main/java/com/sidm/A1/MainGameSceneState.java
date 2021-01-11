@@ -70,7 +70,7 @@ public class MainGameSceneState implements StateBase {
 
         //note: this just randomly spawns collectables, make it less often i suppose?
         //TODO: make funcs to spawn like blocs of GOs?
-        if( timer >= 2.0f)
+        if( timer >= 2.0f && GameSystem.Instance.GetIsPaused() == false)
         {
             if(rand_double >= 0.5)
             {
