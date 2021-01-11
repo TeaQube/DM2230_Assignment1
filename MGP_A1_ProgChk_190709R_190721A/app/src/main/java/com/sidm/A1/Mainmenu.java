@@ -21,6 +21,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
 
     //Define buttons
     private ImageButton btn_play;
+    private ImageButton btn_shop;
     private ImageButton btn_options;
     MediaPlayer BGM;
 
@@ -71,6 +72,13 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
             StateManager.Instance.ChangeState("OptionsMenu"); // Default is like a loading page
         }
 
+         /*
+         if (v == btn_shop)
+         {
+             intent.setClass(this, ShopMenu.class);
+             StateManager.Instance.ChangeState("ShopMenu");
+         }
+        */
         startActivity(intent);
 
     }

@@ -8,10 +8,6 @@
     android:background = "@drawable/datacoregamescreen"
     >
 
-    <!-- for play button -->
-
-    <!-- for options button -->
-
     <ImageButton
         android:id="@+id/btn_play"
         android:layout_width="160dp"
@@ -19,8 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="160dp"
-        android:layout_marginEnd="470dp"
-        android:layout_marginRight="444dp"
+        android:layout_marginEnd="500dp"
+        android:layout_marginRight="571dp"
         android:backgroundTint="@color/teal_700"
         android:src="@drawable/playbutton" />
 
@@ -31,10 +27,27 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="160dp"
-        android:layout_marginEnd="130dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginRight="442dp"
         android:layout_toStartOf="@+id/btn_play"
         android:backgroundTint="@color/teal_700"
         android:src="@drawable/settingsbutton"/>
+
+    <ImageButton
+        android:id="@+id/btn_shop"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="295dp"
+        android:layout_marginRight="442dp"
+        android:layout_toStartOf="@+id/btn_play"
+        android:backgroundTint="@color/teal_700"
+        android:src="@drawable/shopbutton"/>
+
+
+
+
 
 </RelativeLayout>
