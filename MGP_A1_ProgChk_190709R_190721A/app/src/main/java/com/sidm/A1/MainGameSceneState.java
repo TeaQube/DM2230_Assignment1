@@ -66,6 +66,10 @@ public class MainGameSceneState implements StateBase {
             if(rand_double >= 0.5)
             {
                 EntityCollectible.Create();
+                if(rand_double <= 0.75)
+                {
+                    EntityHealthPickUp.Create();
+                }
             }
             else
             {

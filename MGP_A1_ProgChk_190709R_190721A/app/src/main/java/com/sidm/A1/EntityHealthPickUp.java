@@ -6,8 +6,8 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
-//TODO: Make other forms of collectibles in the form of powerup, health, buffs and debuffs
-public class EntityCollectible implements EntityBase, Collidable {
+
+public class EntityHealthPickUp implements EntityBase, Collidable {
 
     private Bitmap bmp = null; // Define image object name (bmp)
     private Sprite spritesheet = null; //used for the spritesheet.
@@ -31,7 +31,7 @@ public class EntityCollectible implements EntityBase, Collidable {
         rand_float = (float) Math.random();
         xPos= 1900;
         yPos = 1080* rand_float;
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredpolygonglossy),1,1,1);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredsquare),1,1,1);
         spritesheet.Scale(37,37);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
@@ -64,16 +64,16 @@ public class EntityCollectible implements EntityBase, Collidable {
         spritesheet.Render(_canvas,(int)xPos,(int)yPos);
     }
 
-    public static EntityCollectible Create()
+    public static EntityHealthPickUp Create()
     {
-        EntityCollectible result = new EntityCollectible();
+        EntityHealthPickUp result = new EntityHealthPickUp();
         EntityManager.Instance.AddEntity(result,ENTITY_TYPE.ENT_COLLECTIBLE);
         return result;
     }
 
-    public static EntityCollectible Create(int _layer)
+    public static EntityHealthPickUp Create(int _layer)
     {
-        EntityCollectible result = Create();
+        EntityHealthPickUp result = Create();
         result.SetRenderLayer(_layer);
         return result;
     }
@@ -85,7 +85,7 @@ public class EntityCollectible implements EntityBase, Collidable {
 
     @Override
     public String GetType() {
-        return "EntityCollectible";
+        return "EntityHealthPickUp";
     }
 
     @Override
