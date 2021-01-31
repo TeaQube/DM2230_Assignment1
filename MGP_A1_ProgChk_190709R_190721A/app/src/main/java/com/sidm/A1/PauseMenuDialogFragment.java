@@ -2,39 +2,41 @@ package com.sidm.A1;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import androidx.fragment.app.FragmentManager;
-import android.os.Bundle;
-import androidx.fragment.app.DialogFragment;
 import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 
-//by qing bing
-public class PauseConfirmDialogFragment extends DialogFragment
-{
-    //to check if dialog is shown
-    public static boolean IsShown = false;
+import androidx.fragment.app.DialogFragment;
 
-    //dialog is pop-up page but has written API
+public class PauseMenuDialogFragment extends DialogFragment {
+
+    public static boolean IsShown, Paused = false;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
         IsShown = true;
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Confirm Pause?")
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        builder.setMessage("Quit Game?");
+        builder.setView(inflater.inflate(R.layout.dialogbox, null))
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User triggered pause
-                        GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
+                        StateManager.Instance.ChangeState("Mainmenu");
+                        GameSystem.Instance.SaveEditBegin();
+                        GameSystem.Instance.SaveEditEnd();
                         IsShown = false;
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the pause
+                        GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
                         IsShown = false;
                     }
                 });
-
         // Create the AlertDialog object and return it
         return builder.create();
     }
@@ -48,9 +50,4 @@ public class PauseConfirmDialogFragment extends DialogFragment
     public void onDismiss(DialogInterface dialog) {
         IsShown = false;
     }
-
-    public void show(FragmentManager fragmentManager, String pauseConfirm) {
-    }
-
-
 }

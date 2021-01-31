@@ -8,10 +8,6 @@
     android:background = "@drawable/datacoregamescreen"
     >
 
-    <!-- for play button -->
-
-    <!-- for options button -->
-
     <ImageButton
         android:id="@+id/btn_play"
         android:layout_width="160dp"
