@@ -131,6 +131,16 @@ public class EntityCollectible implements EntityBase, Collidable {
     }
 
     @Override
+    public float GetWidth() {
+        return (float)(spritesheet.GetWidth());
+    }
+
+    @Override
+    public float GetHeight() {
+        return (float)(spritesheet.GetHeight());
+    }
+
+    @Override
     public boolean IsDone() {
         return isDone;
     }

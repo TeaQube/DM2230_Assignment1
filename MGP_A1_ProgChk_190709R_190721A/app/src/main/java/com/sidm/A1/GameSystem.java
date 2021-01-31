@@ -61,29 +61,29 @@ public class GameSystem {
         editor = sharedPref.edit();
     }
 
-public void SaveEditEnd()
-{
-    //check if editor exists
-    if (editor == null)
+    public void SaveEditEnd()
     {
-        return;
+        //check if editor exists
+         if (editor == null)
+         {
+            return;
+         }
+
+        editor.commit();
+        //safety to ensure other functions will FAIL once commit is complete
+        editor = null;
     }
 
-    editor.commit();
-    //safety to ensure other functions will FAIL once commit is complete
-    editor = null;
-}
-
-public void SetValueInSave(String _key, int _value)
-{
-    if (editor == null)
+    public void SetValueInSave(String _key, int _value)
     {
-        return;
+         if (editor == null)
+         {
+            return;
+         }
+        editor.putInt(_key, _value);
     }
-    editor.putInt(_key, _value);
-}
 
-public int GetValueFromSave(String _key)
+    public int GetValueFromSave(String _key)
 {
     return sharedPref.getInt(_key, 10);
 }

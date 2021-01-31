@@ -128,6 +128,17 @@ public class EntityUp implements Collidable, EntityBase {
     }
 
     @Override
+    public float GetWidth() {
+        return 0;
+    }
+
+    @Override
+    public float GetHeight() {
+        return 0;
+    }
+
+
+    @Override
     public void OnHit(Collidable _other) {
 
     }

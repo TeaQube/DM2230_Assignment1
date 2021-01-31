@@ -202,6 +202,16 @@ public class EntitySmurf implements EntityBase, Collidable {
         return imgRadius;
     }
 
+    @Override
+    public float GetWidth() {
+        return (float)(spritesheet.GetWidth());
+    }
+
+    @Override
+    public float GetHeight() {
+        return (float)(spritesheet.GetHeight());
+    }
+
     //just not too bright way to do things, but hey.
     public void SetScore(int _score)
     {
