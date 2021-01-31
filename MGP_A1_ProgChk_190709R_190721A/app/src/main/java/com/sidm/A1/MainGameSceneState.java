@@ -15,8 +15,7 @@ public class MainGameSceneState implements StateBase {
     EntityUp upbutton;
     EntityDown downbutton;
     private double rand_double;
-
-
+    
     @Override
     public String GetName() {
         return "MainGame";
