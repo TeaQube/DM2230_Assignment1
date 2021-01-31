@@ -1,7 +1,7 @@
 package com.sidm.A1;
 
 // Created by TanSiewLan2020
-//todo: get width and height
+
 public interface Collidable {
     String GetType();
 

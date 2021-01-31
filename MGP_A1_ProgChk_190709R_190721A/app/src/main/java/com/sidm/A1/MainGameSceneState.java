@@ -87,8 +87,13 @@ public class MainGameSceneState implements StateBase {
             }
             else
             {
+
                 EntityAsteroid.Create();
-                //EntityMultiplier.Create();
+                if(rand_double < 0.25)
+                {
+                    EntityVulnerable.Create();
+                }
+                
             }
             timer = 0.0f;
         }

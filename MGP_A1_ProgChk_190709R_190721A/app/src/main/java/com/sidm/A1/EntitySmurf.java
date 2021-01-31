@@ -23,6 +23,9 @@ public class EntitySmurf implements EntityBase, Collidable {
     private float MuliplierTimer = 0;//how long a multiplier is supposed to last
     private boolean isMultiplied = false;//is a multiplier active?
 
+    private float VulnerableTimer = 0;
+    private boolean isVulnerable = false;
+
     private boolean[] buttonpress = new boolean[BUTTONPRESSTYPE.NUM_BUTTONS.ordinal()];
     int screenWidth, screenHeight;
 
@@ -79,15 +82,25 @@ public class EntitySmurf implements EntityBase, Collidable {
         if(GameSystem.Instance.GetIsPaused())
             return;
 
-        if(MuliplierTimer >=0.f)
+        if(MuliplierTimer >0.f)
         {
-            MuliplierTimer -= 2.f * _dt;
+            MuliplierTimer -=  _dt;
         }
         if(MuliplierTimer <= 0.f)
         {
             isMultiplied = false;
             Multiplier = 1;
             MuliplierTimer = 0.f;
+        }
+
+        if(VulnerableTimer > 0.f)
+        {
+            MuliplierTimer -=  _dt;
+        }
+        if(VulnerableTimer <=0.f)
+        {
+            isVulnerable = false;
+            VulnerableTimer = 0.f;
         }
 
         spritesheet.Update(_dt);
@@ -139,7 +152,14 @@ public class EntitySmurf implements EntityBase, Collidable {
         {
             case "EntityAsteroid":
             {
-                health -= 5;
+                if(!isVulnerable)
+                {
+                    health -= 5;
+                }
+                else
+                {
+                    health -= 15;
+                }
                 break;
             }
             case "EntityCollectible":
@@ -166,9 +186,14 @@ public class EntitySmurf implements EntityBase, Collidable {
             case "EntityMultiplier":
             {
                 Multiplier = 2;
-                MuliplierTimer += 20.f;
+                MuliplierTimer += 10.f;
                 isMultiplied = true;
                 break;
+            }
+            case "EntityVulnerable":
+            {
+                VulnerableTimer += 30.f;
+                isVulnerable = true;
             }
         }
     }
