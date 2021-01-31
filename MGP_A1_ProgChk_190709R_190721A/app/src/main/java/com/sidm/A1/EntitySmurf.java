@@ -19,6 +19,10 @@ public class EntitySmurf implements EntityBase, Collidable {
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
 
+    private int Multiplier = 1;//what the score is multiplied by
+    private float MuliplierTimer = 0;//how long a multiplier is supposed to last
+    private boolean isMultiplied = false;//is a multiplier active?
+
     private boolean[] buttonpress = new boolean[BUTTONPRESSTYPE.NUM_BUTTONS.ordinal()];
     int screenWidth, screenHeight;
 
@@ -75,6 +79,17 @@ public class EntitySmurf implements EntityBase, Collidable {
         if(GameSystem.Instance.GetIsPaused())
             return;
 
+        if(MuliplierTimer >=0.f)
+        {
+            MuliplierTimer -= 2.f * _dt;
+        }
+        if(MuliplierTimer <= 0.f)
+        {
+            isMultiplied = false;
+            Multiplier = 1;
+            MuliplierTimer = 0.f;
+        }
+
         spritesheet.Update(_dt);
 
         if (buttonpress[BUTTONPRESSTYPE.BUTTONUP.ordinal()] == true)
@@ -129,8 +144,16 @@ public class EntitySmurf implements EntityBase, Collidable {
             }
             case "EntityCollectible":
             {
-                score += 1;
-                break;
+                if(isMultiplied==false)
+                {
+                    score += 1 ;
+                    break;
+                }
+                else
+                {
+                    score += 1 * Multiplier;
+                    break;
+                }
             }
             case "EntityHealthPickUp":
             {
@@ -138,6 +161,13 @@ public class EntitySmurf implements EntityBase, Collidable {
                 {
                     health += 5;
                 }
+                break;
+            }
+            case "EntityMultiplier":
+            {
+                Multiplier = 2;
+                MuliplierTimer += 20.f;
+                isMultiplied = true;
                 break;
             }
         }

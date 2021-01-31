@@ -78,11 +78,17 @@ public class MainGameSceneState implements StateBase {
                 if(rand_double <= 0.75)
                 {
                     EntityHealthPickUp.Create();
+
+                }
+                if(rand_double >= 0.9)
+                {
+                    EntityMultiplier.Create();
                 }
             }
             else
             {
                 EntityAsteroid.Create();
+                //EntityMultiplier.Create();
             }
             timer = 0.0f;
         }
