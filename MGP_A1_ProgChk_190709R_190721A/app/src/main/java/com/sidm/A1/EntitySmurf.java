@@ -58,7 +58,7 @@ public class EntitySmurf implements EntityBase, Collidable {
     public void Init(SurfaceView _view) {
         //vv this should be correct
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.spaceships),1,1,60);
-        spritesheet.Scale(100,100);
+        spritesheet.Scale(60,80);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         //health = 70;
         //render screenWidth and screenHeight

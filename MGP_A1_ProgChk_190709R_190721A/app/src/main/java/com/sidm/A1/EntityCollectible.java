@@ -33,7 +33,7 @@ public class EntityCollectible implements EntityBase, Collidable {
         xPos= 1900;
         yPos = 1080* rand_float;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredpolygonglossy),1,1,1);
-        spritesheet.Scale(58,58);
+        spritesheet.Scale(52,52);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
