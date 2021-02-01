@@ -32,7 +32,7 @@ public class EntityHealthPickUp implements EntityBase, Collidable {
         xPos= 1900;
         yPos = 1080* rand_float;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredsquare),1,1,1);
-        spritesheet.Scale(40,40);
+        spritesheet.Scale(60,60);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }

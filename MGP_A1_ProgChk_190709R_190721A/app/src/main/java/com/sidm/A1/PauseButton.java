@@ -14,7 +14,7 @@ public class PauseButton implements EntityBase {
     private boolean isInit = false;
     private boolean isPaused = false;
 
-    private int renderLayer =0;
+    private int renderLayer =1;
 
     private Bitmap bmpP = null;
     private Bitmap scaledbmp = null;

@@ -32,7 +32,7 @@ public class EntityAsteroid implements EntityBase, Collidable {
         xPos= 1900;
         yPos = 1080* rand_float;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.meteor),1,1,1);
-        spritesheet.Scale(47,47);
+        spritesheet.Scale(64,64);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
