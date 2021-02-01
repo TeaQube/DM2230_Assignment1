@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
+//by ernst
 public class EntityMultiplier implements EntityBase, Collidable
 {
     private static int multiplier;

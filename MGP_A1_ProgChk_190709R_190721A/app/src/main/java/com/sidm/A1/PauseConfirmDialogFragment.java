@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 
 import androidx.fragment.app.DialogFragment;
 
+//by qing bing
 public class PauseConfirmDialogFragment extends DialogFragment {
 
     public static boolean IsShown, Paused = false;
