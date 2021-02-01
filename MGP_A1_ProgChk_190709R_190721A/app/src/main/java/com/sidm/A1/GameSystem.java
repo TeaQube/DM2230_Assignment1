@@ -84,8 +84,8 @@ public class GameSystem {
     }
 
     public int GetValueFromSave(String _key)
-{
-    return sharedPref.getInt(_key, 10);
-}
+    {
+        return sharedPref.getInt(_key, 10);
+    }
 
 }

@@ -50,14 +50,14 @@ public class MainGameSceneState implements StateBase {
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-
+        //todo: deal with this
         String scoreText = String.format("SCORE : %d", GameSystem.Instance.GetValueFromSave("Score"));
 
         Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.RED);
         paint.setTextSize(64);
 
-        _canvas.drawText(scoreText, 10, 220, paint);
+        _canvas.drawText(scoreText, 10, 300, paint);
         //use entity manager to render things
 
     }
