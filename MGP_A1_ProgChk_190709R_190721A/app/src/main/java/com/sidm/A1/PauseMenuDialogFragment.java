@@ -19,24 +19,20 @@ public class PauseMenuDialogFragment extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        builder.setMessage("Quit Game?");
+        builder.setMessage("Game is paused");
         builder.setView(inflater.inflate(R.layout.dialogbox, null))
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Resume", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User triggered pause
-                        StateManager.Instance.ChangeState("Mainmenu");
-                        GameSystem.Instance.SaveEditBegin();
-                        GameSystem.Instance.SaveEditEnd();
-                        IsShown = false;
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the pause
+//                        GameSystem.Instance.SaveEditBegin();
+//                        StateManager.Instance.ChangeState("Mainmenu");
+//                        GameSystem.Instance.SaveEditEnd();
+//                        IsShown = false;
                         GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
                         IsShown = false;
                     }
                 });
+
         // Create the AlertDialog object and return it
         return builder.create();
     }
