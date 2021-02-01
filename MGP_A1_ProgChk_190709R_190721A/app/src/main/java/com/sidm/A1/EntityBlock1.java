@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 
 //TODO: Make other forms of collectibles in the form of powerup, health, buffs and debuffs
 //by ernst
-public class EntityCollectible implements EntityBase, Collidable {
+public class EntityBlock1 implements EntityBase, Collidable {
 
     private Bitmap bmp = null; // Define image object name (bmp)
     private Sprite spritesheet = null; //used for the spritesheet.
@@ -17,6 +17,7 @@ public class EntityCollectible implements EntityBase, Collidable {
     private boolean hasTouched = false, isInit; // Check for ontouch events
     private boolean isDone = false;
     private float rand_float;
+    private float blockspawning = 0.25f;
 
     @Override
     public void OnHit(Collidable _other) {
@@ -29,9 +30,18 @@ public class EntityCollectible implements EntityBase, Collidable {
     @Override
     public void Init(SurfaceView _view) {
         //randomise the x and y pos
-        rand_float = (float) Math.random();
-        xPos= 1900;
-        yPos = 1080* rand_float;
+        while (blockspawning <= 2.f && blockspawning > 0.0f)
+        {
+            yPos = 1080* blockspawning;
+            xPos= 1900* blockspawning;
+            blockspawning += 0.25f;
+        }
+
+        if (blockspawning == 2.f)
+        {
+            blockspawning = 0.0f;
+        }
+
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredpolygonglossy),1,1,1);
         spritesheet.Scale(37,37);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
@@ -141,3 +151,4 @@ public class EntityCollectible implements EntityBase, Collidable {
         isDone= _isDone;
     }
 }
+

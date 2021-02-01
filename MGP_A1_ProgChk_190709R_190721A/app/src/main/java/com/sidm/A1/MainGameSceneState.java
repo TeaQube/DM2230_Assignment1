@@ -7,15 +7,19 @@ import android.graphics.Paint;
 import android.view.SurfaceView;
 import android.widget.Button;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 // Created by TanSiewLan2020
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
+    private float blocksequencetimer = 0.0f;
     EntitySmurf player;
     EntityUp upbutton;
     EntityDown downbutton;
     private double rand_double;
-    
+
+
     @Override
     public String GetName() {
         return "MainGame";
@@ -65,25 +69,47 @@ public class MainGameSceneState implements StateBase {
     public void Update(float _dt) {
 
         timer += _dt;
+        blocksequencetimer += _dt;
         rand_double = Math.random();
 
         //note: this just randomly spawns collectables, make it less often i suppose?
         //TODO: make funcs to spawn like blocs of GOs?
-        if( timer >= 2.0f && GameSystem.Instance.GetIsPaused() == false)
+
+       if (blocksequencetimer <= 50.f)  //check if timer for a block sequence is up
+       {
+           if (timer >= 2.0f && GameSystem.Instance.GetIsPaused() == false)
+           {
+               if (rand_double >= 0.5) {
+                   EntityCollectible.Create();
+                   if (rand_double <= 0.75) {
+                       EntityHealthPickUp.Create();
+                   }
+               }
+               else
+                   {
+                    EntityAsteroid.Create();
+                   }
+               timer = 0.0f;
+           }
+       }
+
+        if (blocksequencetimer >= 10.f)
         {
-            if(rand_double >= 0.5)
+            int min = 0;
+            int max = 0;
+            int choice = ThreadLocalRandom.current().nextInt(min, max + 1);
+            switch(choice)
             {
-                EntityCollectible.Create();
-                if(rand_double <= 0.75)
-                {
-                    EntityHealthPickUp.Create();
-                }
+                case 0:
+                    EntityBlock1.Create();
+                    blocksequencetimer = 0.0f;
+                    break;
+                case 1:
+                    //EntityBlock1.Create();
+                    //blocksequencetimer = 0.0f;
+                    break;
             }
-            else
-            {
-                EntityAsteroid.Create();
-            }
-            timer = 0.0f;
+
         }
 
         EntityManager.Instance.Update(_dt);
@@ -109,6 +135,11 @@ public class MainGameSceneState implements StateBase {
         }
     }
 }
+
+
+
+
+
 
 
 
