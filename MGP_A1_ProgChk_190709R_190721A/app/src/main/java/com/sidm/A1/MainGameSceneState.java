@@ -119,6 +119,11 @@ public class MainGameSceneState implements StateBase {
             }
             return;
         }
+
+        if(EntitySmurf.GetHealth() <= 0.f)
+        {
+            //todo: deal with end of game
+        }
     }
 }
 

@@ -32,7 +32,7 @@ public class EntityAsteroid implements EntityBase, Collidable {
         xPos= 1900;
         yPos = 1080* rand_float;
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.meteor),1,1,1);
-        spritesheet.Scale(37,37);
+        spritesheet.Scale(47,47);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
     }
@@ -42,7 +42,7 @@ public class EntityAsteroid implements EntityBase, Collidable {
         if(GameSystem.Instance.GetIsPaused())
             return;
 
-        xPos -= _dt * 50;
+        xPos -= _dt * 70;
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 

@@ -7,7 +7,7 @@ import android.view.SurfaceView;
 
 public class EntitySmurf implements EntityBase, Collidable {
     private static int score;
-    private static int health;
+    private static int health =70;
     private Bitmap bmp = null; // Define image object name (bmp)
     private Bitmap scaledbmp = null;
     private Sprite spritesheet = null; //used for the spritesheet.
@@ -60,7 +60,7 @@ public class EntitySmurf implements EntityBase, Collidable {
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.spaceships),1,1,60);
         spritesheet.Scale(60,80);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
-        health = 70;
+        //health = 70;
         //render screenWidth and screenHeight
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         screenWidth = metrics.widthPixels;

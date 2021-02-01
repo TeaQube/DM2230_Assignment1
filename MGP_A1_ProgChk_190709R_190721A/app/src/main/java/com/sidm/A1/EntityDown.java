@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 
 public class EntityDown implements Collidable, EntityBase {
     private boolean IsClicked = false;
-    private int renderLayer = 0;
+    private int renderLayer = 1;
     private float xPos, yPos, xDir, yDir, imgRadius;
     private Sprite spritesheet = null;
     int screenWidth, screenHeight;
