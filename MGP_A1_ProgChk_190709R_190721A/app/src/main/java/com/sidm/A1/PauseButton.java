@@ -4,15 +4,17 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.ImageButton;
 
 //by qing bing
-public class PauseButton implements EntityBase{
+public class PauseButton implements EntityBase {
 
     private boolean isDone = false;
     private boolean isInit = false;
     private boolean isPaused = false;
 
-    private int renderLayer =1;
+    private int renderLayer =0;
 
     private Bitmap bmpP = null;
     private Bitmap scaledbmp = null;
@@ -33,7 +35,8 @@ public class PauseButton implements EntityBase{
     }
 
     @Override
-    public void Init(SurfaceView _view) {
+    public void Init(SurfaceView _view)
+    {
         //call drawable of pause button
         bmpP = ResourceManager.Instance.GetBitmap(R.drawable.pausebutton);
 
@@ -48,8 +51,8 @@ public class PauseButton implements EntityBase{
         //adjust position of pause button
         xPos = screenWidth - 130;
         yPos = 90;
-
         isInit = true;
+
     }
 
     @Override
@@ -63,8 +66,8 @@ public class PauseButton implements EntityBase{
 
                     // When button is pressed, U can play an audio clip
                     // AudioManager.Instance.PlayAudio(R.raw.clicksound);
-                    //PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
-                    //newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
+                    PauseConfirmDialogFragment newPauseConfirm = new PauseConfirmDialogFragment();
+                    newPauseConfirm.show(GamePage.Instance.getSupportFragmentManager(), "PauseConfirm");
                     GameSystem.Instance.SetIsPaused(!GameSystem.Instance.GetIsPaused());
 
                     // If just want a pause without the (popup dialog --> No done yet.)
