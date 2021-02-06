@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
+    private float blocksequencetimer = 30.0f;
     EntitySmurf player;
     EntityUp upbutton;
     EntityDown downbutton;
@@ -26,9 +27,6 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
-        //EntityAsteroid.Create();
-        //EntityCollectible.Create();
-        //EntitySwitch.Create();
         PauseButton.Create();
         player = EntitySmurf.Create();
         upbutton = EntityUp.Create();
@@ -66,37 +64,55 @@ public class MainGameSceneState implements StateBase {
     public void Update(float _dt) {
 
         timer += _dt;
+        blocksequencetimer += _dt;
         rand_double = Math.random();
 
-        //note: this just randomly spawns collectables, make it less often i suppose?
-        //TODO: make funcs to spawn like blocs of GOs?
-        if( timer >= 2.0f && GameSystem.Instance.GetIsPaused() == false)
+        //every 2 seconds, do this:
+        
+        if (blocksequencetimer >= 0.6f)
         {
-            if(rand_double >= 0.5)
-            {
-                EntityCollectible.Create();
-                if(rand_double <= 0.75)
-                {
-                    EntityHealthPickUp.Create();
-
-                }
-                if(rand_double >= 0.9)
-                {
-                    EntityMultiplier.Create();
-                }
-            }
-            else
-            {
-
-                EntityAsteroid.Create();
-                if(rand_double < 0.25)
-                {
-                    EntityVulnerable.Create();
-                }
-                
-            }
+            EntityBlock1.Create();
             timer = 0.0f;
+//             while (blocksequencetimer != 0.f)
+//            {
+//                  EntityCollectible.Create();
+//                  timer = 0.0f;
+//            }
+//             if (blocksequencetimer == 0.f)
+//             {
+//                timer = 0.0f;
+//             }
         }
+
+//        //note: this just randomly spawns collectables, make it less often i suppose?
+//        //TODO: make funcs to spawn like blocs of GOs?
+//        if( timer >= 2.0f && GameSystem.Instance.GetIsPaused() == false)
+//        {
+//            if(rand_double >= 0.5)
+//            {
+//                EntityCollectible.Create();
+//                if(rand_double <= 0.75)
+//                {
+//                    EntityHealthPickUp.Create();
+//
+//                }
+//                if(rand_double >= 0.9)
+//                {
+//                    EntityMultiplier.Create();
+//                }
+//            }
+//            else
+//            {
+//
+//                EntityAsteroid.Create();
+//                if(rand_double < 0.25)
+//                {
+//                    EntityVulnerable.Create();
+//                }
+//
+//            }
+//            timer = 0.0f;
+//        }
 
         EntityManager.Instance.Update(_dt);
 
