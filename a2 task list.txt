@@ -1,0 +1,7 @@
+accurate as of 1/2/2021
+
+Qing Bing - Pause Button, Pause Dialogue
+
+Ernst - Gameplay features (entities), UI
+
+Both - bug fixes and qol/visibility improvements
