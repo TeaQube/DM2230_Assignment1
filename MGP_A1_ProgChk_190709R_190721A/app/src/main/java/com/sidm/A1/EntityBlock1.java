@@ -22,6 +22,7 @@ public class EntityBlock1 implements EntityBase, Collidable {
     private float blockcountdown;
     private Random random;
     private int randomNumber, min, max;
+    private int randomxValue, minimum, maximum;
 
     @Override
     public void OnHit(Collidable _other) {
@@ -38,11 +39,12 @@ public class EntityBlock1 implements EntityBase, Collidable {
         xPos= 1900;
         yPos = 480;
         min = 0;
-        max = 2;
+        max = 25;
         blockcountdown = 0.0f;
         random = new Random();
         randomNumber = random.nextInt(max + 1 - min) + min;
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.elementredpolygonglossy),1,1,1);
+
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.meteor),1,1,1);
         spritesheet.Scale(52,52);
         imgRadius = (float) (spritesheet.GetHeight() * 0.5);
         isInit = true;
@@ -50,29 +52,30 @@ public class EntityBlock1 implements EntityBase, Collidable {
 
     @Override
     public void Update(float _dt) {
-
         if(GameSystem.Instance.GetIsPaused())
             return;
 
-        //when countdown hits 5 second interval, do this:
-        if ((int) blockcountdown % 2 == 0)
-        {
-            //check for the type of random number using a switch
             switch(randomNumber)
             {
-                case 0:
-                    yPos = 600;
-                    break;
-                case 1:
-                    yPos = 480;
-                    break;
-                case 2:
-                    yPos = 360;
-                    break;
+                case 0: yPos = 80; break; case 1: yPos = 112;break;
+                case 2: yPos = 174; break; case 3: yPos = 220; break;
+                case 4: yPos = 276; break; case 5: yPos = 297; break;
+                case 6: yPos = 320; break; case 7: yPos = 375; break;
+                case 8: yPos = 418; break; case 9: yPos = 487; break;
+                case 10: yPos = 537; break; case 11: yPos = 583; break;
+                case 12: yPos = 623; break; case 13: yPos = 673; break;
+                case 14: yPos = 728; break; case 15: yPos = 776; break;
+                case 16: yPos = 812; break; case 17: yPos = 846; break;
+                case 18: yPos = 892; break; case 19: yPos = 923; break;
+                case 20: yPos = 971; break; case 21: yPos = 1032; break;
+                case 22: yPos = 1137; break; case 23: yPos = 1263; break;
+                case 24: yPos = 1302; break; case 25: yPos = 1387; break;
             }
-        }
+//        }
+
 
         xPos -= _dt * 50;
+
         if (TouchManager.Instance.HasTouch()) {
             // 0.0f, xPos, yPos, imgRadius ---> Checking collision of finger w the image
 
@@ -81,8 +84,6 @@ public class EntityBlock1 implements EntityBase, Collidable {
                 // Collided!
 
                 hasTouched = true;
-                xPos = TouchManager.Instance.GetPosX();
-                yPos = TouchManager.Instance.GetPosY();
 
                 //to update the score when collision is true
                 int currScore = GameSystem.Instance.GetValueFromSave("Score");
@@ -107,7 +108,7 @@ public class EntityBlock1 implements EntityBase, Collidable {
     public static EntityBlock1 Create()
     {
         EntityBlock1 result = new EntityBlock1();
-        EntityManager.Instance.AddEntity(result,ENTITY_TYPE.ENT_COLLECTIBLE);
+        EntityManager.Instance.AddEntity(result,ENTITY_TYPE.ENT_ASTEROID);
         return result;
     }
 
@@ -140,13 +141,15 @@ public class EntityBlock1 implements EntityBase, Collidable {
 
     @Override
     public ENTITY_TYPE GetEntityType() {
-        return ENTITY_TYPE.ENT_COLLECTIBLE;
+        return ENTITY_TYPE.ENT_ASTEROID;
     }
 
     @Override
     public float GetPosX() {
         return xPos;
     }
+
+    public void SetPosX(int positionX) {xPos = positionX;}
 
     @Override
     public float GetPosY() {

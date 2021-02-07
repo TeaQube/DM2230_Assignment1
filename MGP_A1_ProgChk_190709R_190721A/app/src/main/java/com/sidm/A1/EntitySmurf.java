@@ -148,25 +148,21 @@ public class EntitySmurf implements EntityBase, Collidable {
         {
             SetIsDone(true);
         }
-        switch (_other.GetType())
-        {
+        switch (_other.GetType()) {
             case "EntityAsteroid":
-            {
-                if(!isVulnerable)
-                {
+            case "EntityBlock1":{
+                if (!isVulnerable) {
                     health -= 5;
-                }
-                else
-                {
+                } else {
                     health -= 15;
                 }
                 break;
             }
+
             case "EntityCollectible":
-            {
-                if(isMultiplied==false)
-                {
-                    score += 1 ;
+                   {
+                if (isMultiplied == false) {
+                    score += 1;
                     break;
                 }
                 else

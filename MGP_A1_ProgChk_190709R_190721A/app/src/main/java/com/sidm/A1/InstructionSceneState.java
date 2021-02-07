@@ -32,12 +32,12 @@ private float timer = 0.f;
         // Other example: Set random position for image to appear randomly on the screen
 
         // example: Set time for image smurf to appear on the screen
-        timer += _dt;
-        if (timer > 1.0f)
-        {
-            EntitySmurf.Create();  //Example: Smurf Sprite
-            timer = 0.0f;
-        }
+//        timer += _dt;
+//        if (timer > 1.0f)
+//        {
+//            EntitySmurf.Create();  //Example: Smurf Sprite
+//            timer = 0.0f;
+//        }
 
         EntityManager.Instance.Update(_dt);
 
