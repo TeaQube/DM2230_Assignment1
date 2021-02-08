@@ -12,7 +12,7 @@ import java.util.Random;
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
     private float gameTimer = 0.0f;
-    private float blocksequencetimer = 40.0f;
+    private float blocksequencetimer = 10.0f;
     int xPos;
     EntitySmurf player;
     EntityUp upbutton;
@@ -70,12 +70,20 @@ public class MainGameSceneState implements StateBase {
         rand_double = Math.random();
         Random random = new Random();
         Random xRandom = new Random();
+        Random yRandom = new Random();
+        int min = 0; int max = 1;
+        int switchValue = random.nextInt(max + 1 - min) + min;
         int minimum = 1720;
         int maximum = 2800;
+        int minimumY = 400;
+        int maximumY = 600;
+        int randomYNumber = yRandom.nextInt(maximumY + 1 - minimumY) + minimum;
+        int firstoffPos = randomYNumber + 260;
+        int secondoffPos = firstoffPos - 460;
         int randomxNumber = xRandom.nextInt(maximum + 1 - minimum) + minimum;
 
         //while timer is still below, do this:
-        if (timer <= 10.0f)
+        if (timer <= 18.0f)
         {
             //regular spawning
             if (gameTimer >= 2.0f && GameSystem.Instance.GetIsPaused() == false) {
@@ -103,20 +111,44 @@ public class MainGameSceneState implements StateBase {
             //while timer for event is going down, do this:
             if (blocksequencetimer > 0.0f)
             {
-                //reduces the spawn count && introduces a break to show clarity between EVENTS
-                if ((int)blocksequencetimer % 5 == 0)
+                switch(switchValue)
                 {
-                    EntityBlock1 newblock = EntityBlock1.Create();
-                    newblock.SetPosX(randomxNumber);
+                    case 0:
+                        //reduces the spawn count && introduces a break to show clarity between EVENTS
+                        if ((int)blocksequencetimer % 5 == 0) {
+                            EntityBlock1 newblock = EntityBlock1.Create();
+                            newblock.SetPosX(randomxNumber);
+
+                        }
+                        break;
+                    case 1:
+                        EntityBlock2 block = EntityBlock2.Create();
+                        for (int i = 0; i < 30; i++)
+                        {
+                            if (i < 10)
+                            {
+                                block.SetPosY(randomYNumber);
+                                randomYNumber += 280;
+                            }
+                            else if (i < 20 && i > 10)
+                            {
+                                block.SetPosY(firstoffPos);
+                            }
+                            else if (i < 30 && i > 20)
+                            {
+                                block.SetPosY(secondoffPos);
+                            }
+                        }
+                        break;
                 }
-                //when the event timer is up, do this:
-                else
-                {
-                    //resets the block sequence timer
-                    blocksequencetimer = 25.f;
-                    //reset the timer so that another block can appear
-                    timer = 0.0f;
-                }
+            }
+            //when the event timer is up, do this:
+            else
+            {
+                //resets the block sequence timer
+                blocksequencetimer = 10.f;
+                //reset the timer so that another block can appear
+                timer = 0.0f;
             }
         }
 
