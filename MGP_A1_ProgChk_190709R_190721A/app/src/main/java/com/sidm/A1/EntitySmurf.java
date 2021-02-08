@@ -160,6 +160,7 @@ public class EntitySmurf implements EntityBase, Collidable {
             }
 
             case "EntityCollectible":
+            case "EntityBlock2":
                    {
                 if (isMultiplied == false) {
                     score += 1;

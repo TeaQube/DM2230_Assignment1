@@ -18,11 +18,11 @@ import android.widget.ImageButton;
 
 // Created by TanSiewLan2020
 
-public class Mainmenu extends Activity implements OnClickListener, StateBase {  //Using StateBase class
+public class EndGameMenu extends Activity implements OnClickListener, StateBase {  //Using StateBase class
 
     //Define buttons
-    private ImageButton btn_play;
-    private ImageButton btn_options;
+    private Button btn_return;
+
     MediaPlayer BGM;
 
     @Override
@@ -36,16 +36,10 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.endgamescreen);
 
-        btn_play = (ImageButton)findViewById(R.id.btn_play);
-        btn_play.setOnClickListener(this); //Set Listener to this button --> Start Button
-
-        btn_options = (ImageButton)findViewById(R.id.btn_options);
-        btn_options.setOnClickListener(this); //Set Listener to this button --> Options Button
-
-        BGM = MediaPlayer.create(getApplicationContext(), R.raw.backgroundmusic);
-        BGM.start();
+        btn_return = (Button) findViewById(R.id.btn_return);
+        btn_return.setOnClickListener(this); //Set Listener to this button --> Options Button
 
     }
 
@@ -59,18 +53,13 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
 
         Intent intent = new Intent();
 
-        if (v == btn_play)
+        if (v == btn_return)
         {
             // intent --> to set to another class which another page or screen that we are launching.
             intent.setClass(this, GamePage.class);
-            StateManager.Instance.ChangeState("MainGame");
+            StateManager.Instance.ChangeState("Mainmenu");
         }
 
-         if (v == btn_options)
-        {
-            intent.setClass(this, OptionsMenu.class);
-            StateManager.Instance.ChangeState("OptionsMenu"); // Default is like a loading page
-        }
 
         startActivity(intent);
 
@@ -79,24 +68,24 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {  
     @Override
     public void Render(Canvas _canvas) {
     }
-	
+
     @Override
     public void OnEnter(SurfaceView _view) {
     }
-	
+
     @Override
     public void OnExit()
     {
         BGM.stop();
     }
-	
+
     @Override
     public void Update(float _dt) {
     }
-	
+
     @Override
     public String GetName() {
-        return "Mainmenu";
+        return "EndGame";
     }
 
     @Override

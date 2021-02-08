@@ -1,9 +1,12 @@
 package com.sidm.A1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceView;
+import android.content.Context;
 
 import java.util.Random;
 
@@ -26,8 +29,7 @@ public class MainGameSceneState implements StateBase {
     }
 
     @Override
-    public void OnEnter(SurfaceView _view)
-    {
+    public void OnEnter(SurfaceView _view) {
         RenderBackground.Create();
         PauseButton.Create();
         player = EntitySmurf.Create();
@@ -47,8 +49,7 @@ public class MainGameSceneState implements StateBase {
     }
 
     @Override
-    public void Render(Canvas _canvas)
-    {
+    public void Render(Canvas _canvas) {
         EntityManager.Instance.Render(_canvas);
         //todo: deal with this
         String scoreText = String.format("SCORE : %d", GameSystem.Instance.GetValueFromSave("Score"));
@@ -71,7 +72,8 @@ public class MainGameSceneState implements StateBase {
         Random random = new Random();
         Random xRandom = new Random();
         Random yRandom = new Random();
-        int min = 0; int max = 1;
+        int min = 0;
+        int max = 1;
         int switchValue = random.nextInt(max + 1 - min) + min;
         int minimum = 1720;
         int maximum = 2800;
@@ -83,12 +85,10 @@ public class MainGameSceneState implements StateBase {
         int randomxNumber = xRandom.nextInt(maximum + 1 - minimum) + minimum;
 
         //while timer is still below, do this:
-        if (timer <= 18.0f)
-        {
+        if (timer <= 18.0f) {
             //regular spawning
             if (gameTimer >= 2.0f && GameSystem.Instance.GetIsPaused() == false) {
-                if (rand_double >= 0.5)
-                {
+                if (rand_double >= 0.5) {
                     EntityCollectible.Create();
                     if (rand_double <= 0.75) {
                         EntityHealthPickUp.Create();
@@ -96,8 +96,7 @@ public class MainGameSceneState implements StateBase {
                     if (rand_double >= 0.9) {
                         EntityMultiplier.Create();
                     }
-                }
-                else {
+                } else {
                     EntityAsteroid.Create();
                     if (rand_double < 0.25) {
                         EntityVulnerable.Create();
@@ -105,17 +104,14 @@ public class MainGameSceneState implements StateBase {
                 }
                 gameTimer = 0.0f;
             }
-        }
-        else { //when the timer hits to do a RANDOM event
+        } else { //when the timer hits to do a RANDOM event
             blocksequencetimer -= _dt;
             //while timer for event is going down, do this:
-            if (blocksequencetimer > 0.0f)
-            {
-                switch(switchValue)
-                {
+            if (blocksequencetimer > 0.0f) {
+                switch (switchValue) {
                     case 0:
                         //reduces the spawn count && introduces a break to show clarity between EVENTS
-                        if ((int)blocksequencetimer % 5 == 0) {
+                        if ((int) blocksequencetimer % 5 == 0) {
                             EntityBlock1 newblock = EntityBlock1.Create();
                             newblock.SetPosX(randomxNumber);
 
@@ -123,19 +119,13 @@ public class MainGameSceneState implements StateBase {
                         break;
                     case 1:
                         EntityBlock2 block = EntityBlock2.Create();
-                        for (int i = 0; i < 30; i++)
-                        {
-                            if (i < 10)
-                            {
+                        for (int i = 0; i < 30; i++) {
+                            if (i < 10) {
                                 block.SetPosY(randomYNumber);
                                 randomYNumber += 280;
-                            }
-                            else if (i < 20 && i > 10)
-                            {
+                            } else if (i < 20 && i > 10) {
                                 block.SetPosY(firstoffPos);
-                            }
-                            else if (i < 30 && i > 20)
-                            {
+                            } else if (i < 30 && i > 20) {
                                 block.SetPosY(secondoffPos);
                             }
                         }
@@ -143,8 +133,7 @@ public class MainGameSceneState implements StateBase {
                 }
             }
             //when the event timer is up, do this:
-            else
-            {
+            else {
                 //resets the block sequence timer
                 blocksequencetimer = 10.f;
                 //reset the timer so that another block can appear
@@ -155,35 +144,32 @@ public class MainGameSceneState implements StateBase {
         EntityManager.Instance.Update(_dt);
 
         //for button click to move the character
-        if (upbutton.getClicked() == true)
-        {
+        if (upbutton.getClicked() == true) {
             player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONUP);
         }
-        if (downbutton.getClicked() == true)
-        {
+        if (downbutton.getClicked() == true) {
             player.SetIsClicked(EntitySmurf.BUTTONPRESSTYPE.BUTTONDOWN);
         }
 
         //vv deals with transitions
-        if (GameSystem.Instance.GetIsPaused())
-        {
-            if (TouchManager.Instance.IsDown())
-            {
+        if (GameSystem.Instance.GetIsPaused()) {
+            if (TouchManager.Instance.IsDown()) {
                 //Example of touch on screen in the main game to trigger back to Main menu
             }
             return;
         }
 
-        if(EntitySmurf.GetHealth() <= 0.f)
-        {
+        if (EntitySmurf.GetHealth() <= 0.f) {
             //todo: deal with end of game
             int currentScore = EntitySmurf.GetScore();
             GameSystem.Instance.SaveEditBegin();
             GameSystem.Instance.SetValueInSave("Score", currentScore);
             GameSystem.Instance.SaveEditEnd();
+            StateManager.Instance.ChangeState("EndGame");
         }
     }
 }
+
 
 
 
