@@ -86,11 +86,7 @@ public class EntityBlock1 implements EntityBase, Collidable {
                 hasTouched = true;
 
                 //to update the score when collision is true
-                int currScore = GameSystem.Instance.GetValueFromSave("Score");
-                ++currScore;
-                GameSystem.Instance.SaveEditBegin();
-                GameSystem.Instance.SetValueInSave("Score", currScore);
-                GameSystem.Instance.SaveEditEnd();
+
 
             }
         }
