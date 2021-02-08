@@ -53,8 +53,6 @@ public class EntityCollectible implements EntityBase, Collidable {
                 // Collided!
 
                 hasTouched = true;
-                xPos = TouchManager.Instance.GetPosX();
-                yPos = TouchManager.Instance.GetPosY();
 
                 //to update the score when collision is true
                 int currScore = GameSystem.Instance.GetValueFromSave("Score");

@@ -50,8 +50,6 @@ public class EntityAsteroid implements EntityBase, Collidable {
                 // Collided!
 
                 hasTouched = true;
-                xPos = TouchManager.Instance.GetPosX();
-                yPos = TouchManager.Instance.GetPosY();
             }
 
         }

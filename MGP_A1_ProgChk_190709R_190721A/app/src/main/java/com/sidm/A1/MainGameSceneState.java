@@ -177,6 +177,10 @@ public class MainGameSceneState implements StateBase {
         if(EntitySmurf.GetHealth() <= 0.f)
         {
             //todo: deal with end of game
+            int currentScore = EntitySmurf.GetScore();
+            GameSystem.Instance.SaveEditBegin();
+            GameSystem.Instance.SetValueInSave("Score", currentScore);
+            GameSystem.Instance.SaveEditEnd();
         }
     }
 }
