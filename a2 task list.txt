@@ -1,7 +1,7 @@
-accurate as of 1/2/2021
+accurate as of 8/2/2021
 
-Qing Bing - Pause Button, Pause Dialogue
+Qing Bing - Pause Button, Pause Dialogue, Game play features(spawn patterns), end of game screen
 
-Ernst - Gameplay features (entities), UI
+Ernst - Gameplay features (entities), UI, Shared pref(high score/saved score)
 
 Both - bug fixes and qol/visibility improvements
